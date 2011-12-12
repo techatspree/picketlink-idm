@@ -493,6 +493,10 @@ public class PersistenceManagerImpl extends AbstractManager implements Persisten
 
             if (cache != null)
             {
+                for (User identity : identities)
+                {
+                    cache.putUser(cacheNS, identity);
+                }
                 cache.putUsers(cacheNS, criteria, identities);
             }
 

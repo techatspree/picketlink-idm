@@ -1,0 +1,158 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <groupId>org.picketlink.idm.example</groupId>
+   <version>1.1.5.CR01</version>
+   <artifactId>example-simple</artifactId>
+   <packaging>jar</packaging>
+   <name>Example - Simple PicketLink IDM Maven2 project</name>
+   <url>http://labs.jboss.org/portal/jbosssecurity/</url>
+   <description>Example maven2 project using PicketLink IDM component.</description>
+   <licenses>
+      <license>
+         <name>lgpl</name>
+         <url>http://repository.jboss.com/licenses/lgpl.txt</url>
+      </license>
+   </licenses>
+
+   <repositories>
+      <repository>
+         <id>repository.jboss.org</id>
+         <name>JBoss Repository</name>
+         <layout>default</layout>
+         <url>http://repository.jboss.org/maven2/</url>
+         <snapshots>
+            <enabled>false</enabled>
+         </snapshots>
+      </repository>
+
+      <repository>
+         <id>snapshots.jboss.org</id>
+         <name>JBoss Snapshots Repository</name>
+         <layout>default</layout>
+         <url>http://snapshots.jboss.org/maven2/</url>
+         <snapshots>
+            <enabled>true</enabled>
+         </snapshots>
+         <releases>
+            <enabled>false</enabled>
+         </releases>
+      </repository>
+   </repositories>
+
+    <pluginRepositories>
+      <pluginRepository>
+         <id>java.net maven repository</id>
+         <url>http://download.java.net/maven/2/</url>
+         <snapshots>
+            <enabled>true</enabled>
+         </snapshots>
+      </pluginRepository>
+   </pluginRepositories>
+
+
+   <dependencies>
+      <dependency>
+         <groupId>org.picketlink.idm</groupId>
+         <artifactId>picketlink-idm-core</artifactId>
+         <version>${project.version}</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.picketlink.idm</groupId>
+         <artifactId>picketlink-idm-hibernate</artifactId>
+         <version>${project.version}</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.picketlink.idm</groupId>
+         <artifactId>picketlink-idm-ldap</artifactId>
+         <version>${project.version}</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.picketlink.idm</groupId>
+         <artifactId>picketlink-idm-cache</artifactId>
+         <version>${project.version}</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>junit</groupId>
+         <artifactId>junit</artifactId>
+         <version>3.8.1</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>hsqldb</groupId>
+         <artifactId>hsqldb</artifactId>
+         <version>1.8.0.7</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>sun-opends</groupId>
+         <artifactId>OpenDS</artifactId>
+         <version>1.0.0</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>berkeleydb</groupId>
+         <artifactId>je</artifactId>
+         <version>3.2.76</version>
+         <scope>test</scope>
+      </dependency>
+
+      <!--Because of cache usage-->
+      <dependency>
+         <groupId>net.sf.ehcache</groupId>
+         <artifactId>ehcache</artifactId>
+         <version>1.2.3</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.hibernate</groupId>
+         <artifactId>hibernate-ehcache</artifactId>
+         <version>3.3.2.GA</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.apache.commons</groupId>
+         <artifactId>commons-io</artifactId>
+         <version>1.3.2</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>commons-collections</groupId>
+         <artifactId>commons-collections</artifactId>
+         <version>3.1</version>
+      </dependency>
+
+   </dependencies>
+
+   <build>
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+               <target>1.5</target>
+               <source>1.5</source>
+            </configuration>
+         </plugin>
+         <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.4.3</version>
+            <configuration>
+               <printSummary>true</printSummary>
+               <disableXmlReport>false</disableXmlReport>
+               <testFailureIgnore>false</testFailureIgnore>
+               <includes>
+                  <include>**/*TestCase.java</include>
+               </includes>
+               <forkMode>pertest</forkMode>
+               <argLine>${surefire.jvm.args}</argLine>
+               <useFile>false</useFile>
+               <trimStackTrace>false</trimStackTrace>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
+</project>

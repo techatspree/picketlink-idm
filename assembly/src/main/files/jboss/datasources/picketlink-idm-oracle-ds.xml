@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<datasources>  
+  <local-tx-datasource>
+    <jndi-name>PicketLinkIDMDS</jndi-name>
+    <connection-url>@jdbc.url@</connection-url>
+    <driver-class>oracle.jdbc.driver.OracleDriver</driver-class>
+    <user-name>@jdbc.username@</user-name>
+    <password>@jdbc.password@</password>
+ 
+    <min-pool-size>5</min-pool-size>
+    <max-pool-size>100</max-pool-size>
+
+      <!-- corresponding type-mapping in the standardjbosscmp-jdbc.xml (optional) -->
+      <metadata>
+         <type-mapping>Oracle9i</type-mapping>
+      </metadata>
+  </local-tx-datasource>
+</datasources>

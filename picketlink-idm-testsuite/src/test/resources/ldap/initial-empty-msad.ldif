@@ -1,0 +1,55 @@
+dn: o=jbid,dc=jboss,dc=test
+objectclass: top
+objectclass: organization
+o: jbid
+
+dn: ou=idm,o=jbid,dc=jboss,dc=test
+objectclass: top
+objectclass: organizationalUnit
+ou: idm
+
+dn: ou=trunk,ou=idm,o=jbid,dc=jboss,dc=test
+objectclass: top
+objectclass: organizationalUnit
+ou: trunk
+
+dn: ou=test,ou=trunk,ou=idm,o=jbid,dc=jboss,dc=test
+objectclass: top
+objectclass: organizationalUnit
+ou: test
+
+dn: ou=People,ou=test,ou=trunk,ou=idm,o=jbid,dc=jboss,dc=test
+objectclass: top
+objectclass: organizationalUnit
+ou: People
+
+dn: ou=Roles,ou=test,ou=trunk,ou=idm,o=jbid,dc=jboss,dc=test
+objectclass: top
+objectclass: organizationalUnit
+ou: Roles
+
+dn: ou=Groups,ou=test,ou=trunk,ou=idm,o=jbid,dc=jboss,dc=test
+objectclass: top
+objectclass: organizationalUnit
+ou: Groups
+
+dn: ou=Organizations,ou=test,ou=trunk,ou=idm,o=jbid,dc=jboss,dc=test
+objectclass: top
+objectclass: organizationalUnit
+ou: Organizations
+
+dn: ou=OrganizationUnits,ou=test,ou=trunk,ou=idm,o=jbid,dc=jboss,dc=test
+objectclass: top
+objectclass: organizationalUnit
+ou: OrganizationUnits
+
+dn: ou=Departments,ou=test,ou=trunk,ou=idm,o=jbid,dc=jboss,dc=test
+objectclass: top
+objectclass: organizationalUnit
+ou: Departments
+
+dn: ou=Offices,ou=test,ou=trunk,ou=idm,o=jbid,dc=jboss,dc=test
+objectclass: top
+objectclass: organizationalUnit
+ou: Offices
+

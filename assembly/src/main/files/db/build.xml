@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="picketlink.idm.db.install">
+	
+  <!-- DEVELOPER SPECIFIC CONFIGURATIONS -->
+  <property file="../build.properties" />
+
+  <!-- JDBC PROPERTIES -->
+  <property file="${picketlink.idm.home}/db/jdbc/${database}.properties" />
+
+  <!-- ### LOG PROPERTIES ################################################# -->
+  <target name="log.properties">
+    <echo message="database....... ${database}" />
+    <echo message="jdbc.driver.... ${jdbc.driver}" />
+    <echo message="jdbc.url....... ${jdbc.url}" />
+    <echo message="jdbc.username.. ${jdbc.username}" />
+    <echo message="picketlink.idm.home...... ${picketlink.idm.home}" />
+	</target>
+
+  <!-- ### CREATE JBPM SCHEMA ############################################# -->
+	<target name="create.picketlink.idm.schema"
+		      depends="log.properties"
+		      description="creates the picketlink idm tables in the database">
+    <sql driver="${jdbc.driver}"
+         url="${jdbc.url}"
+         userid="${jdbc.username}"
+         password="${jdbc.password}"
+         onerror="continue">
+      <transaction src="${picketlink.idm.home}/db/schema.scripts/picketlink.idm.${database}.create.sql"/>
+      <classpath>
+        <fileset dir="${picketlink.idm.home}/lib">
+        	<include name="*.jar"/>
+        </fileset>
+      </classpath>
+    </sql>
+	</target>
+
+  <!-- ### DROP JBPM SCHEMA ############################################### -->
+  <target name="drop.jbossidm.schema" 
+  	      depends="log.properties"
+  	      description="drops the jbossidm tables from the database">
+    <sql driver="${jdbc.driver}"
+         url="${jdbc.url}"
+         userid="${jdbc.username}"
+         password="${jdbc.password}"
+         onerror="continue">
+      <transaction src="${picketlink.idm.home}/db/schema.scripts/picketlink.idm.${database}.drop.sql"/>
+      <classpath>
+        <fileset dir="${picketlink.idm.home}/lib">
+          <include name="*.jar"/>
+        </fileset>
+      </classpath>
+    </sql>
+  </target>
+
+
+  <!-- ### START HSQLDB DATABASE MGR ##################################### -->
+  <target name="hsqldb.databasemanager"
+  	      description="start the hsqldb database manager">
+  	<java classname="org.hsqldb.util.DatabaseManager" fork="true">
+  		<arg line="-url jdbc:hsqldb:hsql://localhost:1701"/>
+      <classpath>
+        <fileset dir="${picketlink.idm.home}/lib">
+          <include name="hsqldb.jar"/>
+        </fileset>
+      </classpath>
+  	</java>
+  </target>
+	
+</project>

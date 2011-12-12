@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+
+   <name>PicketLink IDM Integration JBoss5</name>
+   <description>PicketLink IDM JBoss5</description>
+
+   <groupId>org.picketlink.idm.integration</groupId>
+   <artifactId>picketlink-idm-jboss5</artifactId>
+   <packaging>jar</packaging>
+   <version>1.1.5.CR01</version>
+  
+   <parent>
+      <groupId>org.picketlink.idm</groupId>
+      <artifactId>picketlink-idm-integration</artifactId>
+      <version>1.1.5.CR01</version>
+   </parent>
+
+   <dependencies>
+
+      <dependency>
+         <groupId>org.picketlink.idm</groupId>
+         <artifactId>picketlink-idm-core</artifactId>
+         <version>${version}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.picketlink.idm</groupId>
+         <artifactId>picketlink-idm-hibernate</artifactId>
+         <version>${version}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.picketlink.idm</groupId>
+         <artifactId>picketlink-idm-ldap</artifactId>
+         <version>${version}</version>
+      </dependency>
+   </dependencies>
+
+   <!-- Build -->
+   <build>
+
+
+      <plugins>
+         <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+               <source>1.5</source>
+               <target>1.5</target>
+               <showDeprecation>true</showDeprecation>
+               <showWarnings>true</showWarnings>
+               <optimize>true</optimize>
+            </configuration>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>2.2</version>
+            <configuration>
+               <excludes>
+                  <exclude>**/*.xml</exclude>
+               </excludes>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
+
+</project>

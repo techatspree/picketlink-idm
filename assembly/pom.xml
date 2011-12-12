@@ -1,0 +1,190 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <groupId>org.picketlink.idm</groupId>
+   <artifactId>picketlink-idm</artifactId>
+   <version>1.1.5.CR01</version>
+   <packaging>pom</packaging>
+   <name>PicketLink IDM Assembly </name>
+	
+   <parent>
+      <groupId>org.picketlink.idm</groupId>
+      <artifactId>picketlink-idm-parent</artifactId>
+      <version>1.1.5.CR01</version>
+      <relativePath>../parent</relativePath>
+   </parent>
+
+   <properties>
+      <hibernate-commons-annotations>3.1.0.GA</hibernate-commons-annotations>
+      <hibernate-tools-version>3.2.0.ga</hibernate-tools-version>
+      <hsqldb-version>1.8.0.7</hsqldb-version>
+      <idm.version>${project.version}</idm.version>
+      <apache.ant.version>1.7.0</apache.ant.version>
+      <mysql.connector.version>5.0.8</mysql.connector.version>
+      <postgresql.version>8.3-603.jdbc3</postgresql.version>
+      <jtds.version>1.2.2</jtds.version>
+   </properties>
+
+   <dependencies>
+   
+      <dependency>
+         <groupId>org.picketlink.idm</groupId>
+         <artifactId>picketlink-idm-api</artifactId>
+         <version>${idm.version}</version>
+      </dependency>
+       <dependency>
+         <groupId>org.picketlink.idm</groupId>
+         <artifactId>picketlink-idm-common</artifactId>
+         <version>${idm.version}</version>
+      </dependency>
+       <dependency>
+         <groupId>org.picketlink.idm</groupId>
+         <artifactId>picketlink-idm-spi</artifactId>
+         <version>${idm.version}</version>
+      </dependency>
+       <dependency>
+         <groupId>org.picketlink.idm</groupId>
+         <artifactId>picketlink-idm-core</artifactId>
+         <version>${idm.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.picketlink.idm</groupId>
+         <artifactId>picketlink-idm-hibernate</artifactId>
+         <version>${idm.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.picketlink.idm</groupId>
+         <artifactId>picketlink-idm-ldap</artifactId>
+         <version>${idm.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.picketlink.idm</groupId>
+         <artifactId>picketlink-idm-cache</artifactId>
+         <version>${idm.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.picketlink.idm.integration</groupId>
+         <artifactId>picketlink-idm-jboss5</artifactId>
+         <version>${idm.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.picketlink.idm.integration</groupId>
+         <artifactId>picketlink-idm-jboss5-deployer</artifactId>
+         <classifier>config</classifier>
+         <type>zip</type>
+         <version>${idm.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.picketlink.idm.integration</groupId>
+         <artifactId>picketlink-idm-jboss5-deployer</artifactId>
+         <classifier>deployer</classifier>
+         <type>zip</type>
+         <version>${idm.version}</version>
+      </dependency>
+               
+      <dependency>
+         <groupId>org.hibernate</groupId>
+         <artifactId>hibernate-commons-annotations</artifactId>
+         <version>${hibernate-commons-annotations}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.hibernate</groupId>
+         <artifactId>hibernate-tools</artifactId>
+         <version>${hibernate-tools-version}</version>
+      </dependency>
+      <dependency>
+         <groupId>hsqldb</groupId>
+         <artifactId>hsqldb</artifactId>
+         <version>${hsqldb-version}</version>
+      </dependency>			
+      <dependency>
+         <groupId>org.apache.ant</groupId>
+         <artifactId>ant</artifactId>
+         <version>${apache.ant.version}</version>
+      </dependency>
+		    
+      <!-- Database Drivers -->
+      <dependency>
+         <groupId>mysql</groupId>
+         <artifactId>mysql-connector-java</artifactId>
+         <version>${mysql.connector.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>postgresql</groupId>
+         <artifactId>postgresql</artifactId>
+         <version>${postgresql.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>net.sourceforge.jtds</groupId>
+         <artifactId>jtds</artifactId>
+         <version>${jtds.version}</version>
+      </dependency>
+			
+   </dependencies>
+
+   <build>
+      <plugins>
+	      <plugin>
+	        <artifactId>maven-antrun-plugin</artifactId>
+	        <executions>
+	          <execution>
+	            <id>create-db-schemas</id>
+	            <phase>process-resources</phase>
+	            <goals>
+	              <goal>run</goal>
+	            </goals>
+	            <configuration>
+	              <tasks>
+	                <property name="maven.runtime.classpath" refid="maven.compile.classpath"/>
+	                <ant antfile="scripts/antrun-schema.xml"
+	                     target="create-schema">
+	                </ant>
+	              </tasks>
+	            </configuration>
+	          </execution>
+	        </executions>
+	      </plugin>
+	      
+	    <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.2-beta-3</version>
+        <executions>
+
+          <execution>
+            <id>create-single-jar</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <descriptors>
+                <descriptor>scripts/assembly-single-jar.xml</descriptor>
+              </descriptors>
+            </configuration>
+			<inherited>false</inherited>
+          </execution>
+
+          <execution>
+            <id>create-distribution-package</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+			  <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
+			  <appendAssemblyId>false</appendAssemblyId>
+              <descriptors>
+                <descriptor>scripts/assembly-distro.xml</descriptor>
+              </descriptors>
+            </configuration>
+			<inherited>false</inherited>
+          </execution>
+
+        </executions>
+      </plugin>
+      </plugins>
+   </build>
+
+</project>
+

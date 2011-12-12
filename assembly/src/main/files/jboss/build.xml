@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="picketlink.idm.jboss.install" default="deploy">
+  
+  <!-- DEVELOPER SPECIFIC CONFIGURATIONS -->
+  <property file="../build.properties" />
+
+  <!-- JDBC PROPERTIES -->
+  <property file="${picketlink.idm.home}/db/jdbc/${database}.properties" />
+  
+  <property name="jboss.server.config.dir" value="${jboss.home}/server/${jboss.server.configuration}" />
+	
+  <!-- ### LOG PROPERTIES ################################################# -->
+  <target name="log.properties">
+    <echo message="database.................... ${database}" />
+    <echo message="picketlink.idm.home................... ${picketlink.idm.home}" />
+    <echo message="jboss.home.................. ${jboss.home}" />
+    <echo message="jboss.server.configuration.. ${jboss.server.configuration}" />
+    <echo message="jboss.server.config.dir..... ${jboss.server.config.dir}" />
+  </target>
+
+  <!-- ### MAIN TARGET TO INSTALL picketlink idm INTO JBOSS ######################### -->
+  <target name="deploy" 
+  	      depends="log.properties" 
+  	      description="installs picketlink idm into jboss">
+    <antcall target="internal.install.picketlink.idm.into.jboss5" />
+    <antcall target="internal.install.picketlink.idm.into.jboss.db.${database}" />
+  </target>
+	
+	<target name="undeploy" description="uninstall picketlink.idm from jboss">
+	<delete dir="${jboss.server.config.dir}/deploy/picketlink-idm" />
+	<delete dir="${jboss.server.config.dir}/deployers/picketlink-idm.deployer" />
+	</target>
+
+  <!-- ### THE JBOSS GENERIC PART ######################################### -->
+  <target name="internal.install.picketlink.idm.into.jboss5">
+
+    <copy todir="${jboss.server.config.dir}/deploy/picketlink-idm/picketlink-idm-service.sar" overwrite="true">
+      <fileset dir="${picketlink.idm.home}/modules/picketlink-idm-service.sar" />
+    </copy>
+  	
+  	<!-- ### Update the default-picketlink-idm.xml #### -->
+  	<copy  file="${picketlink.idm.home}/modules/picketlink-idm-service.sar/META-INF/default-picketlink-idm.xml"
+  		toFile="${jboss.server.config.dir}/deploy/picketlink-idm/picketlink-idm-service.sar/META-INF/default-picketlink-idm.xml"
+  		overwrite="true">
+  		<filterset>
+  			<filter token="database" value="${database}"/>
+  		</filterset>
+  	</copy>
+  	
+    <copy todir="${jboss.server.config.dir}/deployers/picketlink-idm.deployer" overwrite="true">
+      <fileset dir="${picketlink.idm.home}/modules/picketlink-idm.deployer" />
+    </copy>
+  	
+  	<!-- copy the sql scripts -->
+  	<copy todir="${jboss.server.config.dir}/deploy/picketlink-idm/picketlink-idm-service.sar/idm-sql">
+  		<fileset dir="${picketlink.idm.home}/db/schema.scripts">
+  			<include name="*.sql"/>
+  		</fileset>
+  	</copy> 	
+  	
+    <!-- copy the right hibernate configuration file -->
+    <copy file="${picketlink.idm.home}/jboss/hibernate.cfg/${database}.hibernate.cfg.xml"
+          tofile="${jboss.server.config.dir}/deploy/picketlink-idm/picketlink-idm-service.sar/picketlink.idm.hibernate.cfg.xml"
+          overwrite="true" />
+
+    <!-- copy the right datasource configuration file and replace the jdbc properties with 
+         the values in the jdbc/${database}.properties file -->
+    <copy todir="${jboss.server.config.dir}/deploy/picketlink-idm" overwrite="true">
+      <filterset filtersfile="${picketlink.idm.home}/db/jdbc/${database}.properties" />
+      <fileset dir="${picketlink.idm.home}/jboss/datasources">
+        <include name="picketlink-idm-${database}-ds.xml"/>
+      </fileset>
+    </copy>
+    
+  </target>
+
+  <!-- ### THE HSQLDB SPECIFIC PART ####################################### -->
+  <target name="internal.install.picketlink.idm.into.jboss.db.hsqldb" />
+	
+  <target name="internal.install.picketlink.idm.into.jboss.db.hsqldburl" />
+	
+  <!-- ### THE MYSQL SPECIFIC PART ####################################### -->
+  <target name="internal.install.picketlink.idm.into.jboss.db.mysql">
+    <copy todir="${jboss.server.config.dir}/deploy/picketlink-idm/picketlink-idm-service.sar" overwrite="true">
+      <fileset dir="${picketlink.idm.home}/lib">
+        <include name="mysql-connector-java-*.jar"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <!-- ### THE ORACLE SPECIFIC PART ####################################### -->
+  <target name="internal.install.picketlink.idm.into.jboss.db.oracle">
+    <available file="${picketlink.idm.home}/lib/ojdbc14.jar" property="oracle.driver.jar.available" />
+    <fail message="please download the oracle driver jar ojdbc14.jar from oracle and put it in the ${picketlink.idm.home}/lib directory" unless="oracle.driver.jar.available" />
+    <copy file="${picketlink.idm.home}/lib/ojdbc14.jar"
+          todir="${jboss.server.config.dir}/deploy/picketlink-idm/picketlink-idm-service.sar" />
+  </target>
+  
+  <!-- ### THE POSTGRESQL SPECIFIC PART ################################### -->
+  <target name="internal.install.picketlink.idm.into.jboss.db.postgresql">
+    <copy todir="${jboss.server.config.dir}/deploy/picketlink-idm/picketlink-idm-service.sar" overwrite="true">
+      <fileset dir="${picketlink.idm.home}/lib">
+        <include name="postgresql-*.jar"/>
+      </fileset>
+    </copy>
+  </target>
+	
+  <!--### THE SYBASE SPECIFIC PART ######################################## -->
+  <target name="internal.install.picketlink.idm.into.jboss.db.sybase">
+    <copy todir="${jboss.server.config.dir}/deploy/picketlink-idm/picketlink-idm-service.sar" overwrite="true">
+      <fileset dir="${picketlink.idm.home}/lib">
+        <include name="jtds-*.jar"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <!--### THE MSSQL SPECIFIC PART ######################################## -->
+  <target name="internal.install.picketlink.idm.into.jboss.db.mssql">
+    <copy todir="${jboss.server.config.dir}/deploy/picketlink-idm/picketlink-idm-service.sar" overwrite="true">
+      <fileset dir="${picketlink.idm.home}/lib">
+        <include name="jtds-*.jar"/>
+      </fileset>
+    </copy>
+   </target>
+
+</project>

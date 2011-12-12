@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+
+   <name>PicketLink IDM Integration</name>
+   <description>PicketLink IDM Integration</description>
+
+   <groupId>org.picketlink.idm</groupId>
+   <artifactId>picketlink-idm-integration</artifactId>
+   <packaging>pom</packaging>
+
+   <!-- Parent -->
+   <parent>
+      <groupId>org.picketlink.idm</groupId>
+      <artifactId>picketlink-idm-parent</artifactId>
+      <version>1.1.5.CR01</version>
+      <relativePath>../parent/pom.xml</relativePath>
+   </parent>
+
+   <modules>
+      <module>jboss5</module>
+	  <module>deployer</module>
+   </modules>
+
+   <!-- Plugins -->
+   <build>
+      <plugins>
+         <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+               <source>1.5</source>
+               <target>1.5</target>
+               <showDeprecation>true</showDeprecation>
+               <showWarnings>true</showWarnings>
+               <optimize>true</optimize>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
+
+</project>

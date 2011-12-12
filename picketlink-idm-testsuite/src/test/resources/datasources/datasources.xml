@@ -1,0 +1,219 @@
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~ JBoss, a division of Red Hat                                              ~
+  ~ Copyright 2006, Red Hat Middleware, LLC, and individual                   ~
+  ~ contributors as indicated by the @authors tag. See the                    ~
+  ~ copyright.txt in the distribution for a full listing of                   ~
+  ~ individual contributors.                                                  ~
+  ~                                                                           ~
+  ~ This is free software; you can redistribute it and/or modify it           ~
+  ~ under the terms of the GNU Lesser General Public License as               ~
+  ~ published by the Free Software Foundation; either version 2.1 of          ~
+  ~ the License, or (at your option) any later version.                       ~
+  ~                                                                           ~
+  ~ This software is distributed in the hope that it will be useful,          ~
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of            ~
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU          ~
+  ~ Lesser General Public License for more details.                           ~
+  ~                                                                           ~
+  ~ You should have received a copy of the GNU Lesser General Public          ~
+  ~ License along with this software; if not, write to the Free               ~
+  ~ Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA        ~
+  ~ 02110-1301 USA, or see the FSF site: http://www.fsf.org.                  ~
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+<datasources>
+
+    <!--<datasource>-->
+        <!--<datasource-name>sybase152</datasource-name>-->
+        <!--<connection-url>jdbc:sybase:Tds:dev77.qa.atl2.redhat.com:4100/jbidentity</connection-url>-->
+        <!--<driver-class>com.sybase.jdbc3.jdbc.SybDriver</driver-class>-->
+        <!--<user-name>jbidentity</user-name>-->
+        <!--<password>jbidentity</password>-->
+    <!--</datasource>-->
+    <!--<datasource>-->
+        <!--<datasource-name>sybase-15-0-2_8kb-jtds</datasource-name>-->
+        <!--<connection-url>jdbc:jtds:sybase://dev77.qa.atl2.redhat.com:4100/jbidentity</connection-url>-->
+        <!--<driver-class>net.sourceforge.jtds.jdbc.Driver</driver-class>-->
+        <!--<user-name>jbidentity</user-name>-->
+        <!--<password>jbidentity</password>-->
+    <!--</datasource>-->
+
+   <datasource>
+        <datasource-name>sybase-15-0-2_8kb</datasource-name>
+        <connection-url>jdbc:sybase:Tds:dev77.qa.atl2.redhat.com:4100/jbidentity</connection-url>
+        <driver-class>com.sybase.jdbc3.jdbc.SybDriver</driver-class>
+        <user-name>jbidentity</user-name>
+        <password>jbidentity</password>
+    </datasource>
+   <datasource>
+        <datasource-name>sybase-15-0-2_2kb</datasource-name>
+        <connection-url>jdbc:sybase:Tds:dev77.qa.atl2.redhat.com:5000/jbidentity</connection-url>
+        <driver-class>com.sybase.jdbc3.jdbc.SybDriver</driver-class>
+        <user-name>jbidentity</user-name>
+        <password>jbidentity</password>
+    </datasource>
+   <datasource>
+        <datasource-name>sybase-15-0-3_8kb</datasource-name>
+        <connection-url>jdbc:sybase:Tds:vmg07.mw.lab.eng.bos.redhat.com:5000/jbidentity</connection-url>
+        <driver-class>com.sybase.jdbc3.jdbc.SybDriver</driver-class>
+        <user-name>jbidentity</user-name>
+        <password>jbidentity</password>
+    </datasource>
+
+    <datasource>
+        <datasource-name>db2-9-1</datasource-name>
+        <connection-url>jdbc:db2://dev67.qa.atl.jboss.com:50000/jbossqa</connection-url>
+        <driver-class>com.ibm.db2.jcc.DB2Driver</driver-class>
+        <user-name>identity</user-name>
+        <password>identity</password>
+    </datasource>
+   <datasource>
+        <datasource-name>db2-9-7</datasource-name>
+        <connection-url>jdbc:db2://vmg06.mw.lab.eng.bos.redhat.com:50000/jbossqa</connection-url>
+        <driver-class>com.ibm.db2.jcc.DB2Driver</driver-class>
+        <user-name>identity</user-name>
+        <password>identity</password>
+    </datasource>
+
+    <datasource>
+        <datasource-name>oracle10g-local</datasource-name>
+        <connection-url>jdbc:oracle:thin:@192.168.1.101:1521:XE</connection-url>
+        <driver-class>oracle.jdbc.driver.OracleDriver</driver-class>
+        <user-name>jbid</user-name>
+        <password>jbid</password>
+    </datasource>
+
+    <datasource>
+        <datasource-name>mysql4-local</datasource-name>
+        <connection-url>jdbc:mysql://192.168.1.101:3306/jbid?useServerPrepStmts=false&amp;jdbcCompliantTruncation=false</connection-url>
+        <driver-class>com.mysql.jdbc.Driver</driver-class>
+        <user-name>root</user-name>
+        <password>password</password>
+      </datasource>
+
+
+    <datasource>
+        <datasource-name>mysql5-local</datasource-name>
+        <connection-url>jdbc:mysql://localhost:3306/jbid?useServerPrepStmts=false&amp;jdbcCompliantTruncation=false</connection-url>
+        <driver-class>com.mysql.jdbc.Driver</driver-class>
+        <user-name>root</user-name>
+        <password></password>
+    </datasource>
+
+    <datasource>
+        <datasource-name>postgresql8-local</datasource-name>
+        <connection-url>jdbc:postgresql://192.168.1.101:5432:jbid</connection-url>
+        <driver-class>org.postgresql.Driver</driver-class>
+        <user-name>postgres</user-name>
+        <password>password</password>
+    </datasource>
+
+    <datasource>
+        <datasource-name>hsqldb</datasource-name>
+        <connection-url>jdbc:hsqldb:mem:test</connection-url>
+        <driver-class>org.hsqldb.jdbcDriver</driver-class>
+        <user-name>sa</user-name>
+        <password></password>
+    </datasource>
+    
+    <datasource>
+        <datasource-name>postgresql8-2-4</datasource-name>
+        <connection-url>jdbc:postgresql://vmg01.mw.lab.eng.bos.redhat.com:5432:identity</connection-url>
+        <driver-class>org.postgresql.Driver</driver-class>
+        <user-name>identity</user-name>
+        <password>identity</password>
+    </datasource>
+
+    <datasource>
+        <datasource-name>postgresql8-3-7</datasource-name>
+        <connection-url>jdbc:postgresql://vmg03.mw.lab.eng.bos.redhat.com:5432:identity</connection-url>
+        <driver-class>org.postgresql.Driver</driver-class>
+        <user-name>identity</user-name>
+        <password>identity</password>
+    </datasource>
+
+    <datasource>
+        <datasource-name>sqlserver2005-jtds</datasource-name>
+        <connection-url>jdbc:jtds:sqlserver://dev30.qa.atl.jboss.com:3918/identity</connection-url>
+        <driver-class>net.sourceforge.jtds.jdbc.Driver</driver-class>
+        <user-name>identity</user-name>
+        <password>identity</password>
+    </datasource>
+   <datasource>
+        <datasource-name>sqlserver2005</datasource-name>
+        <connection-url>jdbc:sqlserver://dev30.qa.atl.jboss.com:3918;databaseName=identity</connection-url>
+        <driver-class>com.microsoft.sqlserver.jdbc.SQLServerDriver</driver-class>
+        <user-name>identity</user-name>
+        <password>identity</password>
+    </datasource>
+
+   <datasource>
+        <datasource-name>sqlserver2008-jtds</datasource-name>
+        <connection-url>jdbc:jtds:sqlserver://vmg04.mw.lab.eng.bos.redhat.com:1433/identity</connection-url>
+        <driver-class>net.sourceforge.jtds.jdbc.Driver</driver-class>
+        <user-name>identity</user-name>
+        <password>identity</password>
+    </datasource>
+   <datasource>
+        <datasource-name>sqlserver2008</datasource-name>
+        <connection-url>jdbc:sqlserver://vmg04.mw.lab.eng.bos.redhat.com:1433;databaseName=identity</connection-url>
+        <driver-class>com.microsoft.sqlserver.jdbc.SQLServerDriver</driver-class>
+        <user-name>identity</user-name>
+        <password>identity</password>
+    </datasource>
+
+    <datasource>
+        <datasource-name>oracle9i</datasource-name>
+        <connection-url>jdbc:oracle:thin:@dev20.qa.atl.jboss.com:1521:qa</connection-url>
+        <driver-class>oracle.jdbc.driver.OracleDriver</driver-class>
+        <user-name>identity</user-name>
+        <password>identity</password>
+    </datasource>
+
+    <datasource>
+        <datasource-name>oracle10g</datasource-name>
+        <connection-url>jdbc:oracle:thin:@vmg05.mw.lab.eng.bos.redhat.com:1521:qaora10</connection-url>
+        <driver-class>oracle.jdbc.driver.OracleDriver</driver-class>
+        <user-name>identity</user-name>
+        <password>identity</password>
+    </datasource>
+
+   <datasource>
+        <datasource-name>oracle11R1</datasource-name>
+        <connection-url>jdbc:oracle:thin:@dev04.qa.atl2.redhat.com:1521:qaora11</connection-url>
+        <driver-class>oracle.jdbc.driver.OracleDriver</driver-class>
+        <user-name>identity</user-name>
+        <password>identity</password>
+    </datasource>
+
+   <datasource>
+        <datasource-name>oracle11R1-RAC</datasource-name>
+        <connection-url>jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=qarac1.mw.lab.eng.bos.redhat.com)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=qarac.jboss)))</connection-url>
+        <driver-class>oracle.jdbc.driver.OracleDriver</driver-class>
+        <user-name>identity</user-name>
+        <password>identity</password>
+    </datasource>
+
+    <datasource>
+        <datasource-name>mysql4-1-22</datasource-name>
+        <connection-url>jdbc:mysql://dev01.qa.atl.jboss.com/identity</connection-url>
+        <driver-class>com.mysql.jdbc.Driver</driver-class>
+        <user-name>identity</user-name>
+        <password>identity</password>
+    </datasource>
+
+    <datasource>
+        <datasource-name>mysql5-1-36</datasource-name>
+        <connection-url>jdbc:mysql://vmg02.mw.lab.eng.bos.redhat.com/identity?jdbcCompliantTruncation=false</connection-url>
+        <driver-class>com.mysql.jdbc.Driver</driver-class>
+        <user-name>identity</user-name>
+        <password>identity</password>
+    </datasource>
+   <datasource>
+        <datasource-name>mysql5-0-79-2</datasource-name>
+        <connection-url>jdbc:mysql://vmg08.mw.lab.eng.bos.redhat.com/identity?jdbcCompliantTruncation=false</connection-url>
+        <driver-class>com.mysql.jdbc.Driver</driver-class>
+        <user-name>identity</user-name>
+        <password>identity</password>
+    </datasource>
+</datasources>

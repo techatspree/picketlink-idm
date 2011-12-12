@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="urn:picketlink:idm:deployer:v1_0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="picketlink-idm-deployer" type="urn:picketlinkIDMDeployerType" xmlns:urn="urn:picketlink:idm:deployer:v1_0">
+    <xs:annotation>
+      <xs:documentation>&lt;xs:schemaattributeFormDefault="unqualified"elementFormDefault="qualified"xmlns:xs="http://www.w3.org/2001/XMLSchema"targetNamespace="urn:picketlink:idm:deployer:v1_0"xmlns="urn:picketlink:idm:deployer:v1_0"xmlns:xml="http://www.w3.org/XML/1998/namespace"xmlns:wcc="urn:picket:idm:deployer:v1_0"></xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="picketlinkIDMDeployerType">
+    <xs:sequence>
+      <xs:element name="JNDIName" type="xs:string" />
+      <xs:element name="idmConfigFile" type="xs:string" />
+      <xs:element name="hibernateDeployer" minOccurs="0" type="urn:hibernateDeployerType" xmlns:urn="urn:picketlink:idm:deployer:v1_0"/>
+      <xs:element name="initializers" minOccurs="0" type="urn:initializerType" xmlns:urn="urn:picketlink:idm:deployer:v1_0"/>
+      <xs:element name="options" minOccurs="0" type="urn:optionsType" xmlns:urn="urn:picketlink:idm:deployer:v1_0"/>
+      <xs:element name="depends" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="initializerType">
+  	<xs:sequence>
+  		<xs:element name="datasource" type="xs:string" />
+  		<xs:choice>
+  			<xs:element name="sqlInitializer" type="urn:sqlInitializerType" xmlns:urn="urn:picketlink:idm:deployer:v1_0" />
+  			<xs:element name="hibernateInitializer" type="urn:hibernateInitializerType" xmlns:urn="urn:picketlink:idm:deployer:v1_0" />
+  		</xs:choice>
+  	</xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="sqlInitializerType">
+  	<xs:sequence>
+  		<xs:element name="sqlFile" type="xs:string" />
+  		<xs:element name="exitSQL" type="xs:string" />
+  	</xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="hibernateInitializerType">
+  	<xs:sequence>
+  		<xs:element name="doChecking" type="xs:boolean" />
+  		<xs:element name="setupLocation" type="xs:string" />
+  	</xs:sequence>
+  </xs:complexType>
+ 
+ <xs:complexType name="optionsType">
+ 	<xs:sequence>
+ 	 <xs:element name="option" type="urn:optionType" xmlns:urn="urn:picketlink:idm:deployer:v1_0" maxOccurs="unbounded" />
+ 	</xs:sequence>
+ </xs:complexType>
+  
+ <xs:complexType name="optionType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="name"/>
+      <xs:element type="xs:string" name="value"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="hibernateDeployerType">
+  	<xs:sequence>
+  		<xs:element type="xs:string" name="hibernateConfiguration"/>
+  		<xs:choice>
+  			<xs:element type="xs:string" name="hibernateSessionFactoryRegistryName" />
+  			<xs:element type="xs:string" name="hibernateSessionFactoryJNDIName" />
+  		</xs:choice>
+  	</xs:sequence>
+  </xs:complexType>
+ 
+</xs:schema>

@@ -1,0 +1,37 @@
+<assembly xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/assembly-1.1.0-SNAPSHOT.xsd">
+  <id>deployer</id>
+  <formats>
+    <format>zip</format>
+  </formats>
+  <includeBaseDirectory>true</includeBaseDirectory>
+  <fileSets>
+    <fileSet>
+      <directory>${project.build.outputDirectory}</directory>
+      <outputDirectory>/</outputDirectory>
+      <includes>
+        <include>META-INF/picketlink-idm-deployer-jboss-beans.xml</include>
+        <include>identity-deployer.xsd</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+  
+     <dependencySets>
+        <dependencySet>
+            <outputDirectory>/</outputDirectory>
+            <includes>
+               <include>org.picketlink.idm.integration:picketlink-idm-jboss5-deployer</include>
+               <include>org.picketlink.idm.integration:picketlink-idm-jboss5</include>
+               <include>org.picketlink.idm:picketlink-idm-ldap</include>
+               <include>org.picketlink.idm:picketlink-idm-hibernate</include>
+               <include>org.picketlink.idm:picketlink-idm-core</include>
+               <include>org.picketlink.idm:picketlink-idm-api</include>
+               <include>org.picketlink.idm:picketlink-idm-common</include>
+               <include>org.picketlink.idm:picketlink-idm-spi</include>
+               <include>org.picketlink.idm:picketlink-idm-auth</include>
+               <include>org.picketlink.idm:picketlink-idm-cache</include>
+            </includes>
+        </dependencySet>
+    </dependencySets>
+  
+</assembly>

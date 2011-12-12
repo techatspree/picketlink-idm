@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<datasources>
+  <local-tx-datasource>
+    <jndi-name>PicketLinkIDMDS</jndi-name>
+    <connection-url>@jdbc.url@</connection-url>
+    <driver-class>@jdbc.driver@</driver-class>
+    <user-name>@jdbc.username@</user-name>
+    <password>@jdbc.password@</password>
+    <exception-sorter-class-name>org.jboss.resource.adapter.jdbc.vendor.SybaseExceptionSorter</exception-sorter-class-name>
+
+      <!-- corresponding type-mapping in the standardjbosscmp-jdbc.xml (optional) -->
+      <metadata>
+         <type-mapping>Sybase</type-mapping>
+      </metadata>
+  </local-tx-datasource>
+</datasources>
+

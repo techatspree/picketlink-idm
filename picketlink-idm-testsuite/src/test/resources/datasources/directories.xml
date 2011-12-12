@@ -1,0 +1,189 @@
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~ JBoss, a division of Red Hat                                              ~
+  ~ Copyright 2006, Red Hat Middleware, LLC, and individual                   ~
+  ~ contributors as indicated by the @authors tag. See the                    ~
+  ~ copyright.txt in the distribution for a full listing of                   ~
+  ~ individual contributors.                                                  ~
+  ~                                                                           ~
+  ~ This is free software; you can redistribute it and/or modify it           ~
+  ~ under the terms of the GNU Lesser General Public License as               ~
+  ~ published by the Free Software Foundation; either version 2.1 of          ~
+  ~ the License, or (at your option) any later version.                       ~
+  ~                                                                           ~
+  ~ This software is distributed in the hope that it will be useful,          ~
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of            ~
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU          ~
+  ~ Lesser General Public License for more details.                           ~
+  ~                                                                           ~
+  ~ You should have received a copy of the GNU Lesser General Public          ~
+  ~ License along with this software; if not, write to the Free               ~
+  ~ Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA        ~
+  ~ 02110-1301 USA, or see the FSF site: http://www.fsf.org.                  ~
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+<directories>
+   <directory>
+      <directory-name>EmbeddedOpenDS</directory-name>
+      <description>ldap://localhost:10389</description>
+      <!--identity configuration file-->
+      <config-file>test-identity-config.xml</config-file>
+      <host>localhost</host>
+      <port>10389</port>
+      <context-factory>com.sun.jndi.ldap.LdapCtxFactory</context-factory>
+      <admin-dn>cn=Directory Manager</admin-dn>
+      <admin-password>password</admin-password>
+      <!--ldif from which LDAP will be populated before each test-->
+      <populate-ldif>ldap/initial-empty-opends.ldif</populate-ldif>
+      <!--<populate-ldif></populate-ldif>-->
+      <!--DN that will be removed to perform cleanup after each test-->
+      <cleanup-dn>o=jbid,dc=example,dc=com</cleanup-dn>
+   </directory>
+   <directory>
+      <directory-name>OpenDS-2-0</directory-name>
+      <description>ldap://dev39.qa.atl.jboss.com:2389</description>
+      <!--identity configuration file-->
+      <config-file>test-identity-config-opends20.xml</config-file>
+      <host>dev39.qa.atl.jboss.com</host>
+      <port>2389</port>
+      <context-factory>com.sun.jndi.ldap.LdapCtxFactory</context-factory>
+      <admin-dn>cn=Directory Manager</admin-dn>
+      <admin-password>password</admin-password>
+      <!--ldif from which LDAP will be populated before each test-->
+      <populate-ldif>ldap/initial-empty-opends.ldif</populate-ldif>
+      <!--DN that will be removed to perform cleanup after each test-->
+      <cleanup-dn>o=jbid,dc=example,dc=com</cleanup-dn>
+   </directory>
+   <directory>
+      <directory-name>OpenDS-1-2</directory-name>
+      <description>ldap://dev39.qa.atl.jboss.com:3389</description>
+      <!--identity configuration file-->
+      <config-file>test-identity-config-opends12.xml</config-file>
+      <host>dev39.qa.atl.jboss.com</host>
+      <port>3389</port>
+      <context-factory>com.sun.jndi.ldap.LdapCtxFactory</context-factory>
+      <admin-dn>cn=Directory Manager</admin-dn>
+      <admin-password>password</admin-password>
+      <!--ldif from which LDAP will be populated before each test-->
+      <populate-ldif>ldap/initial-empty-opends.ldif</populate-ldif>
+      <!--DN that will be removed to perform cleanup after each test-->
+      <cleanup-dn>o=jbid,dc=example,dc=com</cleanup-dn>
+   </directory>
+   <directory>
+      <directory-name>SunDS</directory-name>
+      <description>ldap://dev39.qa.atl.jboss.com:1389</description>
+      <!--identity configuration file-->
+      <config-file>test-identity-config-sunds.xml</config-file>
+      <host>dev39.qa.atl.jboss.com</host>
+      <port>1389</port>
+      <context-factory>com.sun.jndi.ldap.LdapCtxFactory</context-factory>
+      <admin-dn>cn=Directory Manager</admin-dn>
+      <admin-password>testldap</admin-password>
+      <!--ldif from which LDAP will be populated before each test-->
+      <populate-ldif>ldap/initial-empty-sunds.ldif</populate-ldif>
+      <!--DN that will be removed to perform cleanup after each test-->
+      <cleanup-dn>dc=example,dc=com</cleanup-dn>
+   </directory>
+   <directory>
+      <directory-name>RedHatDS</directory-name>
+      <description>ldap://dev39.qa.atl.jboss.com:10389</description>
+
+      <config-file>test-identity-config-redhatds.xml</config-file>
+      <host>dev39.qa.atl.jboss.com</host>
+      <port>10389</port>
+      <context-factory>com.sun.jndi.ldap.LdapCtxFactory</context-factory>
+      <admin-dn>cn=Directory Manager</admin-dn>
+      <admin-password>qpq123qpq</admin-password>
+
+      <populate-ldif>ldap/initial-empty-redhatds.ldif</populate-ldif>
+
+      <cleanup-dn>o=jbid,dc=example,dc=com</cleanup-dn>
+   </directory>
+   <directory>
+      <directory-name>OpenLDAP</directory-name>
+      <description>ldap://dev39.qa.atl.jboss.com:389</description>
+
+      <config-file>test-identity-config-openldapds.xml</config-file>
+      <host>dev39.qa.atl.jboss.com</host>
+      <port>389</port>
+      <context-factory>com.sun.jndi.ldap.LdapCtxFactory</context-factory>
+      <admin-dn>cn=Manager,dc=my-domain,dc=com</admin-dn>
+      <admin-password>jbossqa</admin-password>
+
+      <populate-ldif>ldap/initial-empty-openldapds.ldif</populate-ldif>
+
+      <cleanup-dn>o=jbid,dc=my-domain,dc=com</cleanup-dn>
+   </directory>
+   <directory>
+      <directory-name>OpenLDAP-23</directory-name>
+      <description>ldap://vmg17.mw.lab.eng.bos.redhat.com:389</description>
+
+      <config-file>test-identity-config-openldapd-23.xml</config-file>
+      <host>vmg17.mw.lab.eng.bos.redhat.com</host>
+      <port>389</port>
+      <context-factory>com.sun.jndi.ldap.LdapCtxFactory</context-factory>
+      <admin-dn>cn=Manager,dc=my-domain,dc=com</admin-dn>
+      <admin-password>hatetothinkofapassword</admin-password>
+
+      <populate-ldif>ldap/initial-empty-openldapds.ldif</populate-ldif>
+
+      <cleanup-dn>o=jbid,dc=my-domain,dc=com</cleanup-dn>
+   </directory>
+   <directory>
+      <directory-name>OpenLDAP-24</directory-name>
+      <description>ldap://vmg12.mw.lab.eng.bos.redhat.com:389</description>
+
+      <config-file>test-identity-config-openldapd-24.xml</config-file>
+      <host>vmg12.mw.lab.eng.bos.redhat.com</host>
+      <port>389</port>
+      <context-factory>com.sun.jndi.ldap.LdapCtxFactory</context-factory>
+      <admin-dn>cn=Manager,dc=my-domain,dc=com</admin-dn>
+      <admin-password>hatetothinkofapassword</admin-password>
+
+      <populate-ldif>ldap/initial-empty-openldapds.ldif</populate-ldif>
+
+      <cleanup-dn>o=jbid,dc=my-domain,dc=com</cleanup-dn>
+   </directory>
+   <directory>
+      <directory-name>MSAD-2k3</directory-name>
+      <description>ldap://dev44.qa.atl.jboss.com:389</description>
+
+      <config-file>test-identity-config-msad-2k3.xml</config-file>
+      <host>dev44.qa.atl.jboss.com</host>
+      <port>389</port>
+      <context-factory>com.sun.jndi.ldap.LdapCtxFactory</context-factory>
+      <admin-dn>JBOSS\jbossqa</admin-dn>
+      <admin-password>jboss42</admin-password>
+
+      <populate-ldif>ldap/initial-empty-msad.ldif</populate-ldif>
+
+      <cleanup-dn>o=jbid,dc=jboss,dc=test</cleanup-dn>
+   </directory>
+   <directory>
+      <directory-name>MSAD-2k8</directory-name>
+      <description>ldap://vmg13.mw.lab.eng.bos.redhat.com:389</description>
+      <config-file>test-identity-config-msad-2k8.xml</config-file>
+      <host>vmg13.mw.lab.eng.bos.redhat.com</host>
+      <port>389</port>
+      <context-factory>com.sun.jndi.ldap.LdapCtxFactory</context-factory>
+      <admin-dn>JBOSS0\jbossqa</admin-dn>
+      <admin-password>jboss42</admin-password>
+      <populate-ldif>ldap/initial-empty-msad.ldif</populate-ldif>
+      <cleanup-dn>o=jbid,dc=jboss,dc=test</cleanup-dn>
+   </directory>
+   <directory>
+      <directory-name>MSAD-local</directory-name>
+      <description>ldap://192.168.56.101:389</description>
+
+      <config-file>test-identity-config-msad-local.xml</config-file>
+      <host>192.168.56.101</host>
+      <port>389</port>
+      <context-factory>com.sun.jndi.ldap.LdapCtxFactory</context-factory>
+      <admin-dn>TEST\Administrator</admin-dn>
+      <admin-password>!Q2w3e4r</admin-password>
+
+      <populate-ldif>ldap/initial-empty-msad-local.ldif</populate-ldif>
+
+      <cleanup-dn>o=jbid,dc=test,dc=domain</cleanup-dn>
+   </directory>
+
+</directories>

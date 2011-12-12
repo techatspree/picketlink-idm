@@ -1,0 +1,170 @@
+#dn: dc=example,dc=com
+#objectclass: top
+#objectclass: dcObject
+#objectclass: organization
+#dc: example
+#o: example
+
+dn: dc=portal,dc=example,dc=com
+objectclass: top
+objectclass: dcObject
+objectclass: organization
+o: portal
+dc: portal
+
+dn: o=test,dc=portal,dc=example,dc=com
+objectclass: top
+objectclass: organization
+o: test
+
+dn: ou=People,o=test,dc=portal,dc=example,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: People
+
+
+dn: uid=admin,ou=People,o=test,dc=portal,dc=example,dc=com
+objectclass: top
+objectclass: inetOrgPerson
+objectclass: person
+uid: admin
+cn: Java Duke
+sn: Duke
+userPassword: admin
+mail: email@email.com
+
+dn: uid=user,ou=People,o=test,dc=portal,dc=example,dc=com
+objectclass: top
+objectclass: inetOrgPerson
+objectclass: person
+uid: user
+cn: user
+sn: Portal User
+userPassword: user
+mail: email@email.com
+
+dn: uid=jduke,ou=People,o=test,dc=portal,dc=example,dc=com
+objectclass: top
+objectclass: inetOrgPerson
+objectclass: person
+uid: jduke
+cn: Java Duke
+sn: Duke
+userPassword: theduke
+mail: email@email.com
+
+dn: uid=jduke1,ou=People,o=test,dc=portal,dc=example,dc=com
+objectclass: top
+objectclass: inetOrgPerson
+objectclass: person
+uid: jduke1
+cn: Java Duke1
+sn: Duke1
+userPassword: theduke
+mail: email@email.com
+
+
+dn: uid=jduke2,ou=People,o=test,dc=portal,dc=example,dc=com
+objectclass: top
+objectclass: inetOrgPerson
+objectclass: person
+uid: jduke2
+cn: Java Duke2
+sn: Duke2
+userPassword: theduke
+mail: email@email.com
+
+dn: uid=jduke3,ou=People,o=test,dc=portal,dc=example,dc=com
+objectclass: top
+objectclass: inetOrgPerson
+objectclass: person
+uid: jduke3
+cn: Java Duke3
+sn: Duke3
+userPassword: theduke
+mail: email@email.com
+
+dn: uid=jduke4,ou=People,o=test,dc=portal,dc=example,dc=com
+objectclass: top
+objectclass: inetOrgPerson
+objectclass: person
+uid: jduke4
+cn: Java Duke4
+sn: Duke4
+userPassword: theduke
+mail: email@email.com
+
+dn: ou=Roles,o=test,dc=portal,dc=example,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: Roles
+
+dn: cn=Admin,ou=Roles,o=test,dc=portal,dc=example,dc=com
+objectClass: top
+objectClass: groupOfNames
+cn: Admin
+description: Portal admin role
+member: uid=admin,ou=People,o=test,dc=portal,dc=example,dc=com
+
+dn: cn=User,ou=Roles,o=test,dc=portal,dc=example,dc=com
+objectClass: top
+objectClass: groupOfNames
+cn: User
+description: Portal user role
+member: uid=admin,ou=People,o=test,dc=portal,dc=example,dc=com
+member: uid=user,ou=People,o=test,dc=portal,dc=example,dc=com
+member: uid=jduke,ou=People,o=test,dc=portal,dc=example,dc=com
+member: uid=jduke1,ou=People,o=test,dc=portal,dc=example,dc=com
+member: uid=jduke2,ou=People,o=test,dc=portal,dc=example,dc=com
+member: uid=jduke3,ou=People,o=test,dc=portal,dc=example,dc=com
+member: uid=jduke4,ou=People,o=test,dc=portal,dc=example,dc=com
+
+dn: cn=Echo,ou=Roles,o=test,dc=portal,dc=example,dc=com
+objectClass: top
+objectClass: groupOfNames
+cn: Echo
+description: the JBossAdmin group
+member: uid=jduke1,ou=People,o=test,dc=portal,dc=example,dc=com
+member: uid=jduke3,ou=People,o=test,dc=portal,dc=example,dc=com
+member: uid=jduke4,ou=People,o=test,dc=portal,dc=example,dc=com
+
+dn: cn=Echo1,ou=Roles,o=test,dc=portal,dc=example,dc=com
+objectClass: top
+objectClass: groupOfNames
+cn: Echo1
+description: the JBossAdmin group 2
+member: uid=jduke2,ou=People,o=test,dc=portal,dc=example,dc=com
+member: uid=jduke3,ou=People,o=test,dc=portal,dc=example,dc=com
+
+dn: cn=TheDuke,ou=Roles,o=test,dc=portal,dc=example,dc=com
+objectClass: groupOfNames
+objectClass: top
+cn: TheDuke
+description: TheDuke role context
+member: uid=jduke,ou=People,o=test,dc=portal,dc=example,dc=com
+
+dn: ou=Groups,o=test,dc=portal,dc=example,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: Groups
+
+dn: cn=OrganizationA,ou=Groups,o=test,dc=portal,dc=example,dc=com
+objectClass: top
+objectClass: groupOfNames
+cn: OrganizationA
+description: Some organization
+member: cn=Echo1,ou=Roles,o=test,dc=portal,dc=example,dc=com
+member: cn=TheDuke,ou=Roles,o=test,dc=portal,dc=example,dc=com
+
+dn: cn=OrganizationB,ou=Groups,o=test,dc=portal,dc=example,dc=com
+objectClass: top
+objectClass: groupOfNames
+cn: OrganizationB
+description: Some organization
+member: cn=User,ou=Roles,o=test,dc=portal,dc=example,dc=com
+member: cn=Admin,ou=Roles,o=test,dc=portal,dc=example,dc=com
+
+dn: ou=Organizations,o=test,dc=portal,dc=example,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: Organization

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<deployment xmlns="urn:jboss:bean-deployer:2.0">
+
+   <!--
+     IDM Service
+  -->
+   <bean name="idm.example.auth.IDMService"
+         class="org.picketlink.idm.integration.jboss5.IDMService">
+      <constructor>
+         <parameter>jboss.idm.cfg.xml</parameter>
+      </constructor>
+      <property name="doChecking">true</property>
+      <property name="idmSessionFactoryJNDI">java:/IdentitySessionFactory</property>
+      <property name="hibernateSessionFactoryRegistryName">hibernateSessionFactory</property>
+      <property name="hibernateConfigLocation">jboss.idm.hibernate.cfg.xml</property>
+      <depends>TransactionManager</depends>
+   </bean>
+
+   <bean name="IDMExamplePopulationService"
+         class="org.picketlink.idm.example.auth.SimplePopulationService">
+      <property name="idmSessionFactoryJNDI">java:/IdentitySessionFactory</property>
+      <depends>idm.example.auth.IDMService</depends>
+   </bean>
+
+   <application-policy xmlns="urn:jboss:security-beans:1.0" name="ExampleJBossIdentityIDMSecurityRealm">
+      <authentication>
+         <login-module code = "org.picketlink.idm.auth.JBossIdentityIDMLoginModule"
+                       flag = "required">
+            <module-option name="identitySessionFactoryJNDIName">java:/IdentitySessionFactory</module-option>
+            <module-option name="realmName">realm://JBossIdentity</module-option>
+            <module-option name="roleGroupTypeName">GROUP</module-option>
+            <module-option name="additionalRole">Authenticated</module-option>
+            <module-option name="transactionAware">true</module-option>
+            <!--<module-option name="userEnabledAttributeName"></module-option>-->
+            <!--<module-option name="associatedGroupType"></module-option>-->
+            <!--<module-option name="associatedGroupName"></module-option>-->
+            <!--<module-option name="validateUserNameCase"></module-option>-->
+            <!--<module-option name="userNameToLowerCase"></module-option>-->
+         </login-module>
+      </authentication>
+   </application-policy>
+
+    
+
+</deployment>

@@ -1,0 +1,23 @@
+<?xml version='1.0'?>
+<!DOCTYPE policy PUBLIC
+      "-//JBoss//DTD JBOSS Security Config 3.0//EN"
+      "http://www.jboss.org/j2ee/dtd/security_config.dtd">
+
+<!--<policy>-->
+    <!--<application-policy name = "java:/jaas/ExampleJBossIdentityIDMSecurityRealm">-->
+       <!--<authentication>-->
+          <!--<login-module code = "org.picketlink.idm.auth.xxxJBossIdentityIDMLoginModule"-->
+             <!--flag = "required">-->
+              <!--<module-option name="identitySessionFactoryJNDIName">java:/IdentitySessionFactory</module-option>-->
+              <!--<module-option name="realmName">realm://JBossIdentity</module-option>-->
+              <!--<module-option name="roleGroupTypeName">GROUP</module-option>-->
+              <!--<module-option name="additionalRole">Authenticated</module-option>-->
+              <!--<module-option name="userEnabledAttributeName"></module-option>-->
+              <!--<module-option name="associatedGroupType"></module-option>-->
+              <!--<module-option name="associatedGroupName"></module-option>-->
+              <!--<module-option name="validateUserNameCase"></module-option>-->
+              <!--<module-option name="userNameToLowerCase"></module-option>-->
+          <!--</login-module>-->
+       <!--</authentication>-->
+    <!--</application-policy>-->
+<!--</policy>-->

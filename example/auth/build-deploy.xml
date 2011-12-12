@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<project name="deploy">
+
+   <target name="deploy">
+
+      <condition property="DEPLOY" value="${env.DEPLOY}">
+         <and>
+            <isset property="env.DEPLOY"/>
+            <not>
+               <isset property="DEPLOY"/>
+            </not>
+         </and>
+      </condition>
+
+      <antcall target="_deploy"/>
+
+   </target>
+
+   <target name="_deploy" if="DEPLOY" depends="evaluate_properties">
+
+
+      <fail message="Please set the environment variable JBOSS_HOME">
+         <condition>
+            <and>
+               <not>
+                  <isset property="JBOSS_HOME"/>
+               </not>
+            </and>
+         </condition>
+      </fail>
+
+      <property name="toDir" value="${JBOSS_HOME}/server/default/deploy/"/>
+
+      <echo message="Copy artifact: ${artifact.to.copy} to ${toDir}"/>
+
+      <mkdir dir="${toDir}"/>
+
+      <copy todir="${toDir}" flatten="true"
+            file="${artifact.to.copy}" />
+       <!--<copy todir="${toDir}/${toArtifact}">-->
+           <!--<fileset dir="${artifact.to.copy}"/>-->
+       <!--</copy>-->
+
+   </target>
+
+
+
+
+
+
+
+   <target name="evaluate_properties">
+
+      <property environment="env"/>
+
+      <!--If properties are not in command line check if they are set in env-->
+      <condition property="JBOSS_HOME" value="${env.JBOSS_HOME}">
+         <and>
+            <isset property="env.JBOSS_HOME"/>
+            <not>
+               <isset property="JBOSS_HOME"/>
+            </not>
+         </and>
+      </condition>
+
+   </target>
+
+
+
+</project>

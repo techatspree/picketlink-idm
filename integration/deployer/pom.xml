@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+
+   <name>PicketLink IDM Integration JBoss5 deployer</name>
+   <description>PicketLink IDM JBoss5 deployer</description>
+
+   <groupId>org.picketlink.idm.integration</groupId>
+   <artifactId>picketlink-idm-jboss5-deployer</artifactId>
+   <packaging>jar</packaging>
+   <version>1.1.5.CR01</version>
+  
+   <parent>
+      <groupId>org.picketlink.idm</groupId>
+      <artifactId>picketlink-idm-integration</artifactId>
+      <version>1.1.5.CR01</version>
+   </parent>
+
+   <properties>
+      <jboss.version>5.0.0.GA</jboss.version>
+      <jboss.deployers.version>2.0.3.GA</jboss.deployers.version>
+   </properties>
+
+   <dependencies>
+
+      <dependency>
+         <groupId>org.picketlink.idm</groupId>
+         <artifactId>picketlink-idm-core</artifactId>
+         <version>${project.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.picketlink.idm</groupId>
+         <artifactId>picketlink-idm-hibernate</artifactId>
+         <version>${project.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.picketlink.idm</groupId>
+         <artifactId>picketlink-idm-ldap</artifactId>
+         <version>${project.version}</version>
+      </dependency>
+       <dependency>
+         <groupId>org.picketlink.idm</groupId>
+         <artifactId>picketlink-idm-auth</artifactId>
+         <version>${project.version}</version>
+      </dependency>
+       <dependency>
+         <groupId>org.picketlink.idm</groupId>
+         <artifactId>picketlink-idm-cache</artifactId>
+         <version>${project.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.picketlink.idm.integration</groupId>
+         <artifactId>picketlink-idm-jboss5</artifactId>
+         <version>${project.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>bsh</groupId>
+         <artifactId>bsh</artifactId>
+         <version>1.3.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.deployers</groupId>
+        <artifactId>jboss-deployers-client</artifactId>
+        <version>${jboss.deployers.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.deployers</groupId>
+        <artifactId>jboss-deployers-client-spi</artifactId>
+        <version>${jboss.deployers.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.deployers</groupId>
+        <artifactId>jboss-deployers-spi</artifactId>
+        <version>${jboss.deployers.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.deployers</groupId>
+        <artifactId>jboss-deployers-structure-spi</artifactId>
+        <version>${jboss.deployers.version}</version>
+        <scope>provided</scope>
+        <exclusions>
+          <exclusion>
+            <groupId>org.jboss.microcontainer</groupId>
+            <artifactId>jboss-dependency</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.deployers</groupId>
+        <artifactId>jboss-deployers-vfs-spi</artifactId>
+        <version>${jboss.deployers.version}</version>
+        <scope>provided</scope>
+        <exclusions>
+          <exclusion>
+            <groupId>org.jboss</groupId>
+            <artifactId>jbossxb</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+   </dependencies>
+
+  <!-- Build -->
+  <build>
+    <plugins>
+       <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+          <showDeprecation>true</showDeprecation>
+          <showWarnings>true</showWarnings>
+          <optimize>true</optimize>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.2</version>
+        <configuration>
+          <excludes>
+            <exclude>META-INF/*.xml</exclude>
+            <exclude>**/*.xml</exclude>
+            <exclude>**/*.txt</exclude> 
+          </excludes>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>deployer</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <finalName>picketlink-idm.deployer</finalName>
+              <appendAssemblyId>true</appendAssemblyId>
+              <descriptors>
+                <descriptor>src/main/resources/deployer-assembly.xml</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+          <execution>
+            <id>config</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <finalName>picketlink-idm-service.sar</finalName>
+              <appendAssemblyId>true</appendAssemblyId>
+              <descriptors>
+                <descriptor>src/main/resources/idm-assembly.xml</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      
+    </plugins>
+  </build>
+
+</project>

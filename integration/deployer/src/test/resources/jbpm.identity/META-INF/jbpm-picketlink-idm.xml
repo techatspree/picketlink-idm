@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<picketlink-idm-deployer xmlns="urn:picketlink:idm:deployer:v1_0"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="urn:picketlink:idm:deployer:v1_0 identity-deployer.xsd">
+	<JNDIName>java:/jbpmIdentitySessionFactory</JNDIName>
+	<idmConfigFile>jbpm.picketlink.idm.cfg.xml</idmConfigFile>
+</picketlink-idm-deployer>

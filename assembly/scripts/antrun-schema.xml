@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ============================================================ -->
+<!--  JBoss, the OpenSource J2EE webOS                            -->
+<!--  Distributable under LGPL license.                           -->
+<!--  See terms of license at http://www.gnu.org.                 -->
+<!-- ============================================================ -->
+
+
+<project>
+
+	<property name="db.scripts.dir" value="target/db/schema.scripts" />
+	<property name="config.dir" value="src/main/files/jboss/hibernate.cfg"/>
+	
+	<path id="classpath">
+	  <pathelement path="${maven.runtime.classpath}"/>
+	</path>
+	
+	
+  <!-- ================================================================== -->
+  <!-- jbossidm Database schema                                               -->
+  <!-- ================================================================== -->
+	
+  <target name="create-schema">
+  	
+	<taskdef name="hibernatetool" classname="org.hibernate.tool.ant.HibernateToolTask" 
+		 classpathref="classpath"/>
+
+    <mkdir dir="target"/>
+  	<mkdir dir="target/db" />
+  	<mkdir dir="${db.scripts.dir}" />
+
+    <!-- HsqlDB -->
+    <create-ddl db="hsqldburl"/>
+  	
+    <create-ddl db="hsqldb"/>
+
+    <!-- MySQL -->
+    <create-ddl db="mysql"/>
+
+    <!-- Oracle -->
+    <create-ddl db="oracle"/>
+
+    <!-- PostgreSQL -->
+    <create-ddl db="postgresql"/>
+  	
+  	<!-- Sybase -->
+  	<create-ddl db="sybase" />
+
+	<!-- MSSQL -->
+	<create-ddl db="mssql" />
+
+  </target>
+
+  <!--
+     ============================================
+     Macro defs, no need to change anything below
+     ============================================
+  -->
+
+  <macrodef name="create-ddl">
+    <attribute name="db"/>
+
+    <sequential>
+      <echo></echo>
+      <echo>=====================</echo>
+      <echo>Create DDL @{db}</echo>
+    	
+        <hibernatetool destdir="${db.scripts.dir}">
+            <annotationconfiguration configurationfile="${config.dir}/@{db}.hibernate.cfg.xml"/>
+            <hbm2ddl drop="false" create="true" export="${export}" console="false" 
+                    outputfilename="picketlink.idm.@{db}.create.sql" delimiter=";" format="true" />
+            <hbm2ddl drop="true" create="false" export="${export}" console="false" 
+                    outputfilename="picketlink.idm.@{db}.drop.sql" delimiter=";" format="true" />
+        </hibernatetool>
+
+      <echo>Done.</echo>
+      <echo>=====================</echo>
+    </sequential>
+  </macrodef>
+
+</project>

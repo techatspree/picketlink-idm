@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<picketlink-idm-deployer xmlns="urn:picketlink:idm:deployer:v1_0"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="urn:picketlink:idm:deployer:v1_0 identity-deployer.xsd">
+	<JNDIName>java:/IdentitySessionFactory</JNDIName>
+	<idmConfigFile>picketlink.idm.cfg.xml</idmConfigFile>
+	<hibernateDeployer>
+		<hibernateConfiguration>picketlink.idm.hibernate.cfg.xml</hibernateConfiguration>
+		<hibernateSessionFactoryJNDIName>java:/IDMHibernateSessionFactory</hibernateSessionFactoryJNDIName>
+	</hibernateDeployer>
+	<initializers>
+		<datasource>java:/PicketLinkIDMDS</datasource>
+		<sqlInitializer>
+			<sqlFile>idm-sql/picketlink.idm.@database@.create.sql</sqlFile>
+			<exitSQL>select * from jbid_io</exitSQL>
+		</sqlInitializer>
+		<!-- hibernateInitializer>
+			<doChecking>true</doChecking>
+		</hibernateInitializer-->
+	</initializers>
+</picketlink-idm-deployer>

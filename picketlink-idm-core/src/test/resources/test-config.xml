@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-identity xmlns="urn:picketlink:idm:config:v1_0_0_ga"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="urn:picketlink:idm:config:v1_0_0_ga identity-config.xsd">
+   <realms>
+      <realm>
+          <id>Sample Ralm</id>
+          <repository-id-ref>Fallback Repository - ACME</repository-id-ref>
+          <identity-type-mappings>
+              <user-mapping>IDENTITY</user-mapping>
+          </identity-type-mappings>
+      </realm>
+   </realms>
+    <repositories>
+        <repository>
+            <id>Fallback Repository - ACME</id>
+            <class>org.picketlink.idm.impl.repository.FallbackIdentityStoreRepository</class>
+            <external-config override="false">path/to/file.xml</external-config>
+            <default-identity-store-id>Hibernate Identity Store</default-identity-store-id>
+            <default-attribute-store-id>Hibernate Identity Store</default-attribute-store-id>
+            <identity-store-mappings>
+                <identity-store-mapping>
+                    <identity-store-id>Hibernate Identity Store</identity-store-id>
+                    <identity-object-types>
+                        <identity-object-type>JBOSS_IDENTITY_GROUP_ORGANIZATION</identity-object-type>
+                        <identity-object-type>JBOSS_IDENTITY_GROUP_ORGANIZATION_UNIT</identity-object-type>
+                        <identity-object-type>JBOSS_IDENTITY_GROUP_DIVISION</identity-object-type>
+                        <identity-object-type>JBOSS_IDENTITY_GROUP_DEPARTMENT</identity-object-type>
+                        <identity-object-type>JBOSS_IDENTITY_GROUP_PROJECT</identity-object-type>
+                    </identity-object-types>
+                    <options/>
+                </identity-store-mapping>
+                <identity-store-mapping>
+                    <identity-store-id>LDAP Identity Store</identity-store-id>
+                    <identity-object-types>
+                        <identity-object-type>JBOSS_IDENTITY_GROUP_PEOPLE</identity-object-type>
+                    </identity-object-types>
+                    <options/>
+                </identity-store-mapping>
+            </identity-store-mappings>
+        </repository>
+    </repositories>
+    <stores>
+        <attribute-stores/>
+        <identity-stores>
+            <identity-store>
+                <id>Hibernate Identity Store</id>
+                <class>org.picketlink.idm.impl.store.hibernate.HibernateIdentityStoreImpl</class>
+                <external-config/>
+                <supported-relationship-types>
+                    <relationship-type>JBOSS_IDENTITY_RELATIONSHIP_MEMBERSHIP</relationship-type>
+                    <relationship-type>JBOSS_IDENTITY_RELATIONSHIP_ROLE</relationship-type>
+                </supported-relationship-types>
+                <supported-identity-object-types>
+                    <identity-object-type>
+                        <name>JBOSS_IDENTITY_IDENTITY</name>
+                        <relationships/>
+                        <attributes/>
+                        <options/>
+                    </identity-object-type>
+                    <identity-object-type>
+                        <name>JBOSS_IDENTITY_GROUP</name>
+                        <relationships>
+                            <relationship>
+                                <relationship-type-ref>JBOSS_IDENTITY_RELATIONSHIP_MEMBERSHIP</relationship-type-ref>
+                                <identity-object-type-ref>JBOSS_IDENTITY_IDENTITY</identity-object-type-ref>
+                            </relationship>
+                        </relationships>
+                        <attributes/>
+                        <options/>
+                    </identity-object-type>
+                </supported-identity-object-types>
+                <options/>
+
+            </identity-store>
+            <identity-store>
+                <id>LDAP Identity Store</id>
+                <class>org.picketlink.idm.impl.store.hibernate.HibernateIdentityStoreImpl</class>
+                <external-config override="false">path/to/file.xml</external-config>
+                <supported-relationship-types>
+                    <relationship-type>JBOSS_IDENTITY_RELATIONSHIP_MEMBERSHIP</relationship-type>
+                    <relationship-type>JBOSS_IDENTITY_RELATIONSHIP_ROLE</relationship-type>
+                </supported-relationship-types>
+                <supported-identity-object-types>
+                    <identity-object-type>
+                        <name>JBOSS_IDENTITY_IDENTITY</name>
+                        <relationships/>
+                        <credentials/>
+                        <attributes>
+                            <attribute>
+                                <name>user.name.given</name>
+                                <type>text</type>
+                                <mapping/>
+                                <isRequired>false</isRequired>
+                                <isMultivalued>true</isMultivalued>
+                            </attribute>
+                            <attribute>
+                                <name>user.name.family</name>
+                                <mapping/>
+                                <isRequired>false</isRequired>
+                                <isMultivalued>true</isMultivalued>
+                            </attribute>
+                        </attributes>
+                        <options/>
+                    </identity-object-type>
+                    <identity-object-type>
+                        <name>JBOSS_IDENTITY_GROUP_ORGANIZATION</name>
+                        <relationships>
+                            <relationship>
+                                <relationship-type-ref>JBOSS_IDENTITY_RELATIONSHIP_MEMBERSHIP</relationship-type-ref>
+                                <identity-object-type-ref>JBOSS_IDENTITY_IDENTITY</identity-object-type-ref>
+                            </relationship>
+                        </relationships>
+                        <attributes>
+                            <attribute>
+                                <name>user.name.given</name>
+                                <mapping/>
+                                <isRequired>false</isRequired>
+                                <isMultivalued>true</isMultivalued>
+                            </attribute>
+                            <attribute>
+                                <name>user.name.family</name>
+                                <mapping/>
+                                <isRequired>false</isRequired>
+                                <isMultivalued>true</isMultivalued>
+                            </attribute>
+                        </attributes>
+                        <options/>
+                    </identity-object-type>
+                </supported-identity-object-types>
+                <options/>
+                <!--<options>-->
+                <!--<option>-->
+                <!--<name></name>-->
+                <!--<values>-->
+                <!--<value></value>-->
+                <!--</values>-->
+                <!--</option>-->
+                <!--</options>-->
+            </identity-store>
+        </identity-stores>
+    </stores>
+</jboss-identity>

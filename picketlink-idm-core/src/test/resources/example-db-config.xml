@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-identity xmlns="urn:picketlink:idm:config:v1_0_0_ga"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="urn:picketlink:idm:config:v1_0_0_ga identity-config.xsd">
+    <realms>
+        <realm>
+            <id>realm://Example/DB</id>
+            <repository-id-ref>Example Repository</repository-id-ref>
+            <identity-type-mappings>
+                <identity-mapping>IDENTITY</identity-mapping>
+            </identity-type-mappings>
+        </realm>
+    </realms>
+    <repositories>
+        <repository>
+            <id>Example Repository</id>
+            <class>org.picketlink.idm.impl.repository.WrapperIdentityStoreRepository</class>
+            <external-config/>
+            <default-identity-store-id>Hibernate Identity Store</default-identity-store-id>
+            <default-attribute-store-id>Hibernate Identity Store</default-attribute-store-id>
+            <options>
+                <option>
+                    <name>allowNotDefinedAttributes</name>
+                    <value>true</value>
+                </option>
+            </options>
+        </repository>
+    </repositories>
+    <stores>
+        <attribute-stores/>
+        <identity-stores>
+        </identity-stores>
+    </stores>
+</jboss-identity>

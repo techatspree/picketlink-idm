@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           targetNamespace="urn:picketlink:idm:config:v1_0_0_ga" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="jboss-identity" type="urn:jboss-identityType" xmlns:urn="urn:picketlink:idm:config:v1_0_0_ga">
+      <xs:annotation>
+         <xs:documentation>&lt;xs:schemaattributeFormDefault="unqualified"elementFormDefault="qualified"xmlns:xs="http://www.w3.org/2001/XMLSchema"targetNamespace="urn:picketlink:idm:config:v1_0_0_ga"xmlns="urn:picketlink:idm:config:v1_0_0_ga"xmlns:xml="http://www.w3.org/XML/1998/namespace"xmlns:wcc="urn:picketlink:idm:config:v1_0_0_ga"></xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="identity-object-typesType">
+      <xs:sequence>
+         <xs:element type="xs:string" name="identity-object-type" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="repositoryType">
+      <xs:sequence>
+         <xs:element type="xs:string" name="id"/>
+         <xs:element type="xs:string" name="class"/>
+         <xs:element type="urn:external-configType" name="external-config" minOccurs="0"
+                     xmlns:urn="urn:picketlink:idm:config:v1_0_0_ga"/>
+         <xs:element type="xs:string" name="default-identity-store-id" minOccurs="0"/>
+         <xs:element type="xs:string" name="default-attribute-store-id" minOccurs="0"/>
+         <xs:element type="urn:identity-store-mappingsType" name="identity-store-mappings" minOccurs="0"
+                     xmlns:urn="urn:picketlink:idm:config:v1_0_0_ga"/>
+         <xs:element type="urn:optionsType" name="options" minOccurs="0"
+                     xmlns:urn="urn:picketlink:idm:config:v1_0_0_ga"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="identity-storeType">
+      <xs:sequence>
+         <xs:element type="xs:string" name="id"/>
+         <xs:element type="xs:string" name="class"/>
+         <xs:element type="urn:external-configType" name="external-config"
+                     xmlns:urn="urn:picketlink:idm:config:v1_0_0_ga"/>
+         <xs:element type="urn:supported-relationship-typesType" name="supported-relationship-types"
+                     xmlns:urn="urn:picketlink:idm:config:v1_0_0_ga"/>
+         <xs:element type="urn:supported-identity-object-typesType" name="supported-identity-object-types"
+                     xmlns:urn="urn:picketlink:idm:config:v1_0_0_ga"/>
+         <xs:element name="options">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element type="urn:optionType" name="option" maxOccurs="unbounded" minOccurs="0"
+                              xmlns:urn="urn:picketlink:idm:config:v1_0_0_ga"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="external-configType">
+      <xs:simpleContent>
+         <xs:extension base="xs:string">
+            <xs:attribute type="xs:string" name="override" use="optional"/>
+         </xs:extension>
+      </xs:simpleContent>
+   </xs:complexType>
+   <xs:complexType name="identity-store-mappingsType">
+      <xs:sequence>
+         <xs:element type="urn:identity-store-mappingType" name="identity-store-mapping" maxOccurs="unbounded"
+                     minOccurs="0" xmlns:urn="urn:picketlink:idm:config:v1_0_0_ga"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="storesType">
+      <xs:sequence>
+         <xs:element type="xs:string" name="attribute-stores"/>
+         <xs:element type="urn:identity-storesType" name="identity-stores"
+                     xmlns:urn="urn:picketlink:idm:config:v1_0_0_ga"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="jboss-identityType">
+      <xs:sequence>
+         <xs:element type="urn:realmsType" name="realms" xmlns:urn="urn:picketlink:idm:config:v1_0_0_ga"/>
+         <xs:element type="urn:repositoriesType" name="repositories" xmlns:urn="urn:picketlink:idm:config:v1_0_0_ga"/>
+         <xs:element type="urn:storesType" name="stores" xmlns:urn="urn:picketlink:idm:config:v1_0_0_ga"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="supported-identity-object-typesType">
+      <xs:sequence>
+         <xs:element type="urn:identity-object-typeType" name="identity-object-type" maxOccurs="unbounded" minOccurs="0"
+                     xmlns:urn="urn:picketlink:idm:config:v1_0_0_ga"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="optionType">
+      <xs:sequence>
+         <xs:element type="xs:string" name="name"/>
+         <xs:element type="xs:string" name="value" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="group-type-mappingType">
+      <xs:sequence>
+         <xs:element type="xs:string" name="group-type-name"/>
+         <xs:element type="xs:string" name="identity-object-type-name"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="credentialsType">
+      <xs:sequence>
+         <xs:element type="xs:string" name="credential-type" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="repositoriesType">
+      <xs:sequence>
+         <xs:element type="urn:repositoryType" name="repository" maxOccurs="unbounded" minOccurs="0"
+                     xmlns:urn="urn:picketlink:idm:config:v1_0_0_ga"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="realmType">
+      <xs:sequence>
+         <xs:element type="xs:string" name="id"/>
+         <xs:element type="xs:string" name="repository-id-ref"/>
+         <xs:element type="urn:identity-type-mappingsType" name="identity-type-mappings" minOccurs="0"
+                     xmlns:urn="urn:picketlink:idm:config:v1_0_0_ga"/>
+         <xs:element type="urn:optionsType" name="options" minOccurs="0"
+                     xmlns:urn="urn:picketlink:idm:config:v1_0_0_ga"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="relationshipsType">
+      <xs:sequence>
+         <xs:element type="urn:relationshipType" name="relationship" maxOccurs="unbounded" minOccurs="0"
+                     xmlns:urn="urn:picketlink:idm:config:v1_0_0_ga"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="realmsType">
+      <xs:sequence>
+         <xs:element type="urn:realmType" name="realm" maxOccurs="unbounded" minOccurs="0"
+                     xmlns:urn="urn:picketlink:idm:config:v1_0_0_ga"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="identity-type-mappingsType">
+      <xs:sequence>
+         <xs:element type="xs:string" name="user-mapping"/>
+         <xs:element type="urn:group-type-mappingType" name="group-type-mapping" maxOccurs="unbounded" minOccurs="0"
+                     xmlns:urn="urn:picketlink:idm:config:v1_0_0_ga"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="supported-relationship-typesType">
+      <xs:sequence>
+         <xs:element type="xs:string" name="relationship-type" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="identity-storesType">
+      <xs:sequence>
+         <xs:element type="urn:identity-storeType" name="identity-store" maxOccurs="unbounded" minOccurs="0"
+                     xmlns:urn="urn:picketlink:idm:config:v1_0_0_ga"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="attributesType">
+      <xs:sequence>
+         <xs:element type="urn:attributeType" name="attribute" maxOccurs="unbounded" minOccurs="0"
+                     xmlns:urn="urn:picketlink:idm:config:v1_0_0_ga"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="identity-store-mappingType">
+      <xs:sequence>
+         <xs:element type="xs:string" name="identity-store-id"/>
+         <xs:element type="urn:identity-object-typesType" name="identity-object-types"
+                     xmlns:urn="urn:picketlink:idm:config:v1_0_0_ga"/>
+         <xs:element type="urn:optionsType" name="options" xmlns:urn="urn:picketlink:idm:config:v1_0_0_ga"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="relationshipType">
+      <xs:sequence>
+         <xs:element type="xs:string" name="relationship-type-ref"/>
+         <xs:element type="xs:string" name="identity-object-type-ref"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="optionsType">
+      <xs:sequence>
+         <xs:element type="urn:optionType" name="option" maxOccurs="unbounded" minOccurs="0"
+                     xmlns:urn="urn:picketlink:idm:config:v1_0_0_ga"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="identity-object-typeType">
+      <xs:sequence>
+         <xs:element type="xs:string" name="name"/>
+         <xs:element name="relationships">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element type="urn:relationshipType" name="relationship" maxOccurs="unbounded" minOccurs="0"
+                              xmlns:urn="urn:picketlink:idm:config:v1_0_0_ga"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="credentials">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element type="xs:string" name="credential-type" maxOccurs="unbounded" minOccurs="0"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="attributes">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element type="urn:attributeType" name="attribute" maxOccurs="unbounded" minOccurs="0"
+                              xmlns:urn="urn:picketlink:idm:config:v1_0_0_ga"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="options">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element type="urn:optionType" name="option" maxOccurs="unbounded" minOccurs="0"
+                              xmlns:urn="urn:picketlink:idm:config:v1_0_0_ga"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="attributeType">
+      <xs:sequence>
+         <xs:element type="xs:string" name="name"/>
+         <xs:element type="xs:string" name="mapping"/>
+         <xs:element type="xs:string" name="type"/>
+         <xs:element name="isRequired" minOccurs="0" maxOccurs="1">
+            <xs:simpleType>
+               <xs:restriction base="xs:string">
+                  <xs:enumeration value="true"/>
+                  <xs:enumeration value="false"/>
+               </xs:restriction>
+            </xs:simpleType>
+         </xs:element>
+         <xs:element name="isMultivalued" minOccurs="0">
+            <xs:simpleType>
+               <xs:restriction base="xs:string">
+                  <xs:enumeration value="true"/>
+                  <xs:enumeration value="false"/>
+               </xs:restriction>
+            </xs:simpleType>
+         </xs:element>
+         <xs:element type="xs:string" name="isReadOnly" minOccurs="0">
+            <xs:simpleType>
+               <xs:restriction base="xs:string">
+                  <xs:enumeration value="true"/>
+                  <xs:enumeration value="false"/>
+               </xs:restriction>
+            </xs:simpleType>
+         </xs:element>
+         <xs:element type="xs:string" name="isUnique" minOccurs="0">
+            <xs:simpleType>
+               <xs:restriction base="xs:string">
+                  <xs:enumeration value="true"/>
+                  <xs:enumeration value="false"/>
+               </xs:restriction>
+            </xs:simpleType>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

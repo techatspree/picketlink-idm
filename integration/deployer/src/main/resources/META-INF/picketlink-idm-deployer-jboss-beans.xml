@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<deployment xmlns="urn:jboss:bean-deployer:2.0">
+
+  <!--
+    The JBoss IDM Meta Data Deployer
+    -->
+  <bean name="org.picketlink.idm:service=MetaDataDeployer"
+        class="org.picketlink.idm.integration.jboss5.IDMConfigParsingDeployer">
+
+    <property name="suffix">-picketlink-idm.xml</property>
+    <property name="allowMultipleFiles">true</property>
+  </bean>
+
+  <!--
+    The actual IDM Deployer
+    -->
+  <bean name="org.picketlink.idm:service=Deployer"
+             class="org.picketlink.idm.integration.jboss5.IDMDeployer">
+      <property name="transactionManager">
+         <inject bean="RealTransactionManager" option="callback"/>
+      </property>
+   </bean>
+
+</deployment>

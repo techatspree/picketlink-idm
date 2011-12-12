@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<deployment xmlns="urn:jboss:bean-deployer:2.0">
+
+  <!--
+     IDM Service
+  -->
+  <bean name="jboss.identity.IDMService"
+        class="org.picketlink.idm.integration.jboss5.IDMService">
+    <constructor>
+    	<parameter>picketlink.idm.cfg.xml</parameter>
+    </constructor>
+    <property name="idmSessionFactoryJNDI">java:/IdentitySessionFactory</property>
+    <property name="SQLScript">idm-sql/picketlink.idm.hsql.create.sql</property>
+    <property name="datasource">java:PicketLinkIDMDS</property>
+    <property name="exitSQL">select * from jbid_io</property>
+    <depends>jboss.jca:service=DataSourceBinding,name=PicketLinkIDMDS</depends>
+  </bean>
+
+</deployment>

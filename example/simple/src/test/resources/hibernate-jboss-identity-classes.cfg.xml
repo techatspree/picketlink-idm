@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~ JBoss, a division of Red Hat                                              ~
+  ~ Copyright 2006, Red Hat Middleware, LLC, and individual                   ~
+  ~ contributors as indicated by the @authors tag. See the                    ~
+  ~ copyright.txt in the distribution for a full listing of                   ~
+  ~ individual contributors.                                                  ~
+  ~                                                                           ~
+  ~ This is free software; you can redistribute it and/or modify it           ~
+  ~ under the terms of the GNU Lesser General Public License as               ~
+  ~ published by the Free Software Foundation; either version 2.1 of          ~
+  ~ the License, or (at your option) any later version.                       ~
+  ~                                                                           ~
+  ~ This software is distributed in the hope that it will be useful,          ~
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of            ~
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU          ~
+  ~ Lesser General Public License for more details.                           ~
+  ~                                                                           ~
+  ~ You should have received a copy of the GNU Lesser General Public          ~
+  ~ License along with this software; if not, write to the Free               ~
+  ~ Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA        ~
+  ~ 02110-1301 USA, or see the FSF site: http://www.fsf.org.                  ~
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+<!DOCTYPE hibernate-configuration PUBLIC
+   "-//Hibernate/Hibernate Configuration DTD//EN"
+   "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+   <session-factory>
+       <property name="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
+
+       <property name="hibernate.show_sql">false</property>
+       <property name="hibernate.cache.use_second_level_cache">true</property>
+       <property name="hibernate.cache.use_query_cache">true</property>
+
+       <property name="current_session_context_class">thread</property>
+
+       <!--<property name="connection.datasource"></property>-->
+       
+       <property name="hibernate.connection.url">jdbc:hsqldb:mem:unit-testing-jpa1</property>
+       <property name="hibernate.connection.driver_class">org.hsqldb.jdbcDriver</property>
+       <property name="hibernate.dialect">org.hibernate.dialect.HSQLDialect</property>
+       <property name="hibernate.hbm2ddl.auto">create-drop</property>
+       <property name="hibernate.connection.username">sa</property>
+       <property name="hibernate.connection.password"></property>
+
+       <!-- Mapping classes -->
+       <!-- all nessesary mappings are added programatically to the configuration in the store-->
+       <!-- this is for manual SF creation or when 'addHibernateMappings' is set to false in the store configuration--> 
+       <mapping resource="mappings/HibernateRealm.hbm.xml"/>
+       <mapping resource="mappings/HibernateIdentityObjectCredentialBinaryValue.hbm.xml"/>
+       <mapping resource="mappings/HibernateIdentityObjectAttributeBinaryValue.hbm.xml"/>
+       <mapping resource="mappings/HibernateIdentityObject.hbm.xml"/>
+       <mapping resource="mappings/HibernateIdentityObjectCredential.hbm.xml"/>
+       <mapping resource="mappings/HibernateIdentityObjectCredentialType.hbm.xml"/>
+       <mapping resource="mappings/HibernateIdentityObjectAttribute.hbm.xml"/>
+       <mapping resource="mappings/HibernateIdentityObjectType.hbm.xml"/>
+       <mapping resource="mappings/HibernateIdentityObjectRelationship.hbm.xml"/>
+       <mapping resource="mappings/HibernateIdentityObjectRelationshipType.hbm.xml"/>
+       <mapping resource="mappings/HibernateIdentityObjectRelationshipName.hbm.xml"/>
+
+   </session-factory>
+</hibernate-configuration>

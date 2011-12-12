@@ -1,0 +1,73 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <parent>
+      <groupId>org.picketlink.idm</groupId>
+      <artifactId>picketlink-idm-parent</artifactId>
+      <version>1.1.5.CR01</version>
+      <relativePath>../parent</relativePath>
+   </parent>
+   <modelVersion>4.0.0</modelVersion>
+   <artifactId>picketlink-idm-ldap</artifactId>
+   <packaging>jar</packaging>
+   <name>PicketLink IDM LDAP</name>
+   <url>http://labs.jboss.org/portal/jbosssecurity/</url>
+   <description>PicketLink IDM LDAP</description>
+   <licenses>
+      <license>
+         <name>lgpl</name>
+         <url>http://repository.jboss.com/licenses/lgpl.txt</url>
+      </license>
+   </licenses>
+   <organization>
+      <name>JBoss Inc.</name>
+      <url>http://www.jboss.org</url>
+   </organization>
+   <scm>
+      <connection>scm:svn:http://anonsvn.jboss.org/repos/jbossidentity/trunk</connection>
+      <developerConnection>scm:svn:https://svn.jboss.org/jbossidentity/trunk</developerConnection>
+      <url>http://viewvc.jboss.org/cgi-bin/viewvc.cgi/jbossidentity/trunk</url>
+   </scm>
+
+   <dependencies>
+      <dependency>
+         <groupId>org.picketlink.idm</groupId>
+         <artifactId>picketlink-idm-core</artifactId>
+         <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+         <groupId>org.jboss.unit</groupId>
+         <artifactId>jboss-unit</artifactId>
+         <version>1.2.2</version>
+         <scope>test</scope>
+      </dependency>
+ 
+   </dependencies>
+
+
+
+   <build>
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.4.3</version>
+            <configuration>
+               <systemProperties>
+                  <property>
+                     <name>dataSourceName</name>
+                     <value>${dataSourceName}</value>
+                  </property>
+                  <property>
+                     <name>directoryName</name>
+                     <value>${directoryName}</value>
+                  </property>
+               </systemProperties>
+            </configuration>
+         </plugin>
+
+
+      </plugins>
+   </build>
+
+
+</project>

@@ -1,0 +1,118 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <parent>
+      <groupId>org.picketlink.idm</groupId>
+      <artifactId>picketlink-idm-parent</artifactId>
+      <version>1.1.5.CR01</version>
+      <relativePath>parent</relativePath>
+   </parent>
+   <modelVersion>4.0.0</modelVersion>
+   <groupId>org.picketlink.idm</groupId>
+   <artifactId>jboss-identity-idm-pom</artifactId>
+   <packaging>pom</packaging>
+   <name>PicketLink IDM - Aggregator</name>
+   <url>http://labs.jboss.org/portal/jbosssecurity/</url>
+   <description></description>
+
+   <profiles>
+      <profile>
+         <id>default</id>
+         <activation>
+            <activeByDefault>true</activeByDefault>
+         </activation>
+         <modules>
+            <module>parent</module>
+            <module>picketlink-idm-common</module>
+            <module>picketlink-idm-spi</module>
+            <module>picketlink-idm-api</module>
+            <module>picketlink-idm-core</module>
+            <module>picketlink-idm-hibernate</module>
+            <module>picketlink-idm-ldap</module>
+            <module>picketlink-idm-cache</module>
+            <module>picketlink-idm-auth</module>
+            <module>picketlink-idm-testsuite</module>
+            <module>integration</module>
+            <module>picketlink-idm-docs</module>
+         </modules>
+      </profile>
+      <profile>
+         <id>examples</id>
+         <modules>
+            <module>example/simple</module>
+            <module>example/auth</module>
+            <module>example/auth-simple</module>
+         </modules>
+      </profile>
+      <profile>
+         <id>distro</id>
+         <modules>
+            <module>parent</module>
+            <module>picketlink-idm-common</module>
+            <module>picketlink-idm-spi</module>
+            <module>picketlink-idm-api</module>
+            <module>picketlink-idm-core</module>
+            <module>picketlink-idm-hibernate</module>
+            <module>picketlink-idm-ldap</module>
+            <module>picketlink-idm-cache</module>
+            <module>picketlink-idm-auth</module>
+            <module>picketlink-idm-testsuite</module>
+            <module>integration</module>
+            <module>picketlink-idm-docs</module>
+            <module>assembly</module>
+         </modules>
+         <properties>
+            <skipTests>true</skipTests>
+         </properties>
+         <build>
+            <plugins>
+               <plugin>
+                  <artifactId>maven-surefire-plugin</artifactId>
+                  <configuration>
+                     <skipTests>true</skipTests>
+                  </configuration>
+               </plugin>
+               <plugin>
+                  <artifactId>maven-javadoc-plugin</artifactId>
+                  <executions>
+                     <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                           <goal>jar</goal>
+                        </goals>
+                     </execution>
+                  </executions>
+               </plugin>
+               <plugin>
+                  <artifactId>maven-source-plugin</artifactId>
+                  <executions>
+                     <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                           <goal>jar</goal>
+                        </goals>
+                     </execution>
+                  </executions>
+               </plugin>
+            </plugins>
+         </build>
+      </profile>     
+
+   </profiles>
+
+   <reporting>
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <configuration>
+
+               <aggregate>true</aggregate>
+               <excludePackageNames>org.picketlink.idm.impl</excludePackageNames>
+            </configuration>
+         </plugin>
+      </plugins>
+
+   </reporting>
+
+
+</project>

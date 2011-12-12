@@ -1,0 +1,22 @@
+dn: o=test,dc=example,dc=com
+objectclass: top
+objectclass: organization
+o: test
+
+dn: ou=People,o=test,dc=example,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: People
+
+dn: ou=Groups,o=test,dc=example,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: Groups
+
+dn: ou=Organizations,o=test,dc=example,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: Organizations
+
+
+

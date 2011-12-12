@@ -1,0 +1,82 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <parent>
+      <groupId>org.picketlink.idm</groupId>
+      <artifactId>picketlink-idm-parent</artifactId>
+      <version>1.1.5.CR01</version>
+      <relativePath>../../parent</relativePath>
+   </parent>
+
+
+   <modelVersion>4.0.0</modelVersion>
+   <artifactId>Reference-Guide-${translation}</artifactId>
+   <packaging>jdocbook</packaging>
+   <name>User Guide (${translation})</name>
+  
+   <build>
+      <plugins>
+         <plugin>
+            <groupId>org.jboss.maven.plugins</groupId>
+            <artifactId>maven-jdocbook-plugin</artifactId>
+            <version>2.1.1</version>
+            <extensions>true</extensions>
+            <dependencies>
+               <dependency>
+                  <groupId>org.jboss</groupId>
+                  <artifactId>jbossorg-docbook-xslt</artifactId>
+                  <version>1.1.0</version>
+               </dependency>
+               <dependency>
+                  <groupId>org.jboss</groupId>
+                  <artifactId>jbossorg-jdocbook-style</artifactId>
+                  <version>1.1.0</version>
+                  <type>jdocbook-style</type>
+               </dependency>
+            </dependencies>
+            <configuration>
+               <sourceDirectory>${pom.basedir}/en</sourceDirectory>
+               <sourceDocumentName>ReferenceGuide.xml</sourceDocumentName>
+               <imageResource>
+                  <directory>${pom.basedir}/en</directory>
+                  <includes>
+                     <include>images/**/*</include>
+                  </includes>
+               </imageResource>
+               <formats>
+                  <format>
+                     <formatName>pdf</formatName>
+                     <stylesheetResource>classpath:/xslt/org/jboss/pdf.xsl</stylesheetResource>
+                     <finalName>ReferenceGuide.pdf</finalName>
+                  </format>
+                  <format>
+                     <formatName>html</formatName>
+                     <stylesheetResource>classpath:/xslt/org/jboss/xhtml.xsl</stylesheetResource>
+                     <finalName>index.html</finalName>
+                  </format>
+                  <format>
+                     <formatName>html_single</formatName>
+                     <stylesheetResource>classpath:/xslt/org/jboss/xhtml-single.xsl</stylesheetResource>
+                     <finalName>index.html</finalName>
+                  </format>
+                  <format>
+                     <formatName>eclipse</formatName>
+                     <stylesheetResource>classpath:/xslt/org/jboss/eclipse.xsl</stylesheetResource>
+                     <finalName>index.html</finalName>
+                  </format>
+               </formats>
+               <options>
+                  <xincludeSupported>true</xincludeSupported>
+                  <xmlTransformerType>saxon</xmlTransformerType>
+                  <!-- needed for uri-resolvers; can be ommitted if using 'current' uri scheme -->
+                  <!--     could also locate the docbook dependency and inspect its version... -->
+                  <docbookVersion>1.72.0</docbookVersion>
+               </options>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
+
+   <properties>
+     <translation>en-US</translation>
+     <enforcer.skip>true</enforcer.skip>
+   </properties>
+</project>

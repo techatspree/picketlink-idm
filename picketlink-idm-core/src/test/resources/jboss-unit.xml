@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-unit
+        xmlns="urn:jboss:jboss-unit:1.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="urn:jboss:jboss-unit:1.0 jboss-unit_1_0.xsd">
+    <pojo>
+        <parameter name="datasources" value="datasources/datasources.xml"/>
+        <parameter name="dataSourceName" value="hsqldb"/>
+        <parameter name="hibernateConfig" value="datasources/hibernates.xml"/>
+        <parameter name="identityConfig" value="organization-test-jboss-unit-config.xml"/>
+        <parameter name="realmName" value=""/>
+
+        <!--Without LDAP-->
+        <test >
+            <class name="org.picketlink.idm.impl.api.OrganizationTestCase"/>
+            <parameter name="sampleOrganizationRealmName" value="realm://RedHat/DB"/>
+            <parameter name="samplePortalRealmName" value="realm://portal/SamplePortal/DB"/>
+        </test>
+
+        <!--With LDAP-->
+        <test >
+            <class name="org.picketlink.idm.impl.api.OrganizationLDAPTestCase"/>
+            <parameter name="directoryName" value="EmbeddedOpenDS"/>
+            <parameter name="sampleOrganizationRealmName" value="realm://RedHat/DB_LDAP"/>
+            <parameter name="samplePortalRealmName" value="realm://portal/SamplePortal/DB_LDAP"/>
+        </test>
+
+        <!--Without LDAP-->
+        <test >
+            <class name="org.picketlink.idm.impl.api.APITestCase"/>
+            <parameter name="realmName" value="realm://RedHat/DB"/>
+        </test>
+
+        <!--With LDAP-->
+        <test >
+            <class name="org.picketlink.idm.impl.api.APILDAPTestCase"/>
+            <parameter name="directoryName" value="EmbeddedOpenDS"/>
+            <parameter name="realmName" value="realm://RedHat/DB_LDAP"/>
+        </test>
+
+        <!--Without LDAP-->
+        <test >
+            <class name="org.picketlink.idm.impl.store.hibernate.HibernateIdentityStoreTestCase"/>
+            <parameter name="identityConfig" value="store-test-config.xml"/>
+        </test>
+
+        <!--Without LDAP-->
+        <test >
+            <class name="org.picketlink.idm.impl.store.hibernate.HibernateModelTestCase"/>
+        </test>
+
+        <!--With LDAP-->
+        <test >
+            <class name="org.picketlink.idm.impl.store.ldap.LDAPIdentityStoreTestCase"/>
+            <parameter name="directoryName" value="EmbeddedOpenDS"/>
+            <parameter name="identityConfig" value="store-test-config.xml"/>
+        </test>
+        
+    </pojo>
+</jboss-unit>

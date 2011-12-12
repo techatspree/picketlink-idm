@@ -1,0 +1,95 @@
+import org.picketlink.idm.impl.model.hibernate.HibernateIdentityObjectRelationshipType;
+import org.picketlink.idm.impl.model.hibernate.HibernateIdentityObject;
+import org.picketlink.idm.impl.model.hibernate.HibernateIdentityObjectType;
+import org.picketlink.idm.impl.model.hibernate.HibernateIdentityObjectRelationship;
+import org.picketlink.idm.impl.model.hibernate.HibernateIdentityObjectCredentialType;
+import org.picketlink.idm.impl.model.hibernate.HibernateIdentityObjectCredential;
+import org.picketlink.idm.impl.model.hibernate.HibernateRealm;
+import org.picketlink.idm.impl.api.PasswordCredential;
+import org.jboss.portal.common.io.IOTools;
+import org.jboss.portal.common.util.Tools;
+
+
+try
+{
+   session = SessionFactory.openSession();
+   tx = session.beginTransaction();
+
+   HibernateRealm realm = new HibernateRealm("realm://JBossIdentity");
+   session.save(realm);
+
+   HibernateIdentityObjectType typeUser = new HibernateIdentityObjectType("USER");
+   HibernateIdentityObjectType typeGroup = new HibernateIdentityObjectType("GROUP");
+
+   session.save(typeUser);
+   session.save(typeGroup);
+
+   HibernateIdentityObject userUserObject = new HibernateIdentityObject("user", typeUser, realm);
+   HibernateIdentityObject userGroupObject = new HibernateIdentityObject("User", typeGroup, realm);
+   HibernateIdentityObject adminUserObject = new HibernateIdentityObject("admin", typeUser, realm);
+   HibernateIdentityObject adminGroupObject = new HibernateIdentityObject("Admin", typeGroup, realm);
+
+   session.save(userUserObject);
+   session.save(userGroupObject);
+   session.save(adminUserObject);
+   session.save(adminGroupObject);
+
+   HibernateIdentityObjectCredentialType passwordType = new HibernateIdentityObjectCredentialType("PASSWORD");
+
+   session.save(passwordType);
+
+   HibernateIdentityObjectCredential pass1 = new HibernateIdentityObjectCredential();
+   PasswordCredential passwordValue = new PasswordCredential("user");
+   pass1.setType(passwordType);
+   pass1.setTextValue(passwordValue.getEncodedValue().toString());
+   userUserObject.addCredential(pass1);
+
+   session.save(pass1);
+
+   HibernateIdentityObjectCredential pass2 = new HibernateIdentityObjectCredential();
+   passwordValue = new PasswordCredential("admin");
+   pass2.setType(passwordType);
+   pass2.setTextValue(passwordValue.getEncodedValue().toString());
+   adminUserObject.addCredential(pass2);
+
+
+   session.save(pass2);
+
+   HibernateIdentityObjectRelationshipType membership = new HibernateIdentityObjectRelationshipType("JBOSS_IDENTITY_MEMBERSHIP");
+
+   session.save(membership);
+
+   HibernateIdentityObjectRelationship rel1 = new HibernateIdentityObjectRelationship(membership, adminGroupObject, adminUserObject);
+   HibernateIdentityObjectRelationship rel2 = new HibernateIdentityObjectRelationship(membership, userGroupObject, adminUserObject);
+   HibernateIdentityObjectRelationship rel3 = new HibernateIdentityObjectRelationship(membership, userGroupObject, userUserObject);
+
+   session.save(rel1);
+   session.save(rel2);
+   session.save(rel3);
+
+   session.flush();
+
+   tx.commit();
+}
+finally
+{
+   IOTools.safeClose(session);
+}
+
+
+//IdentitySession identitySession = identitySessionFactory.getCurrentIdentitySession("realm://JBossIdentity");
+//identitySession.beginTransaction();
+//
+//User user = identitySession.getPersistenceManager().createUser("user");
+//User admin = identitySession.getPersistenceManager().createUser("admin");
+//
+//identitySession.getAttributesManager().updatePassword(user, "user");
+//identitySession.getAttributesManager().updatePassword(admin, "admin");
+//
+//Group userGroup = identitySession.getPersistenceManager().createGroup("User", "GROUP");
+//Group adminGroup = identitySession.getPersistenceManager().createGroup("Admin", "GROUP");
+//
+//identitySession.getRelationshipManager().associateUser(adminGroup, admin);
+//identitySession.getRelationshipManager().associateUser(userGroup, admin);
+//identitySession.getRelationshipManager().associateUser(userGroup, user);
+//identitySession.getTransaction().commit();

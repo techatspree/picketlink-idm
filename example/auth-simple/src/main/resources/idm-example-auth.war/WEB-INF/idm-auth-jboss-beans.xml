@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<deployment xmlns="urn:jboss:bean-deployer:2.0">
+
+   <application-policy xmlns="urn:jboss:security-beans:1.0" name="ExampleJBossIdentityIDMSecurityRealm">
+      <authentication>
+         <login-module code = "org.picketlink.idm.auth.JBossIdentityIDMLoginModule"
+                       flag = "required">
+            <module-option name="identitySessionFactoryJNDIName">java:/IdentitySessionFactory</module-option>
+            <module-option name="realmName">realm://JBossIdentity</module-option>
+            <module-option name="roleGroupTypeName">GROUP</module-option>
+            <module-option name="additionalRole">Authenticated</module-option>
+            <module-option name="transactionAware">true</module-option>
+         </login-module>
+      </authentication>
+   </application-policy>
+
+</deployment>

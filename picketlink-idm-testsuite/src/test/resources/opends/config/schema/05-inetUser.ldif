@@ -1,0 +1,21 @@
+# Some schema parts that were missing in standard set
+#
+#
+#
+dn: cn=schema
+objectClass: top
+objectClass: ldapSubentry
+objectClass: subschema
+attributeTypes: ( 2.16.840.1.113730.3.1.692 NAME 'inetUserStatus'
+  DESC '"active", "inactive", or "deleted" status of a user' SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  SINGLE-VALUE X-ORIGIN 'Nortel subscriber interoperability' )
+attributeTypes: ( 2.16.840.1.113730.3.1.693 NAME 'inetUserHttpURL'
+  DESC 'A users Web addresses' SYNTAX 1.3.6.1.4.1.1466.115.121.1.26
+  X-ORIGIN 'Nortel subscriber interoperability' )
+attributeTypes: ( 1.2.840.113556.1.2.102 NAME 'memberOf'
+  DESC 'Group that theentry belongs to' SYNTAX 1.3.6.1.4.1.1466.115.121.1.12
+  X-ORIGIN 'iPlanet Delegated Administrator' )
+objectClasses: ( 2.16.840.1.113730.3.2.130 NAME 'inetUser'
+  DESC 'Auxiliary class which must be present in an entry for delivery of subscriber services'
+  SUP top AUXILIARY MAY ( uid $ inetUserStatus $ inetUserHttpURL $ userPassword $ memberOf )
+  X-ORIGIN 'Nortel subscriber interoperability' )

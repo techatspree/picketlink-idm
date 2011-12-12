@@ -1,0 +1,60 @@
+dn: o=jbid,dc=my-domain,dc=com
+objectclass: top
+objectclass: organization
+o: jbid
+
+dn: o=idm,o=jbid,dc=my-domain,dc=com
+objectclass: top
+objectclass: organization
+o: idm
+
+dn: o=trunk,o=idm,o=jbid,dc=my-domain,dc=com
+objectclass: top
+objectclass: organization
+o: trunk
+
+dn: o=test,o=trunk,o=idm,o=jbid,dc=my-domain,dc=com
+objectclass: top
+objectclass: organization
+o: test
+
+dn: ou=placeholder,o=test,o=trunk,o=idm,o=jbid,dc=my-domain,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: placeholder
+
+dn: ou=People,o=test,o=trunk,o=idm,o=jbid,dc=my-domain,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: People
+
+dn: ou=Roles,o=test,o=trunk,o=idm,o=jbid,dc=my-domain,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: Roles
+
+dn: ou=Groups,o=test,o=trunk,o=idm,o=jbid,dc=my-domain,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: Groups
+
+dn: ou=Organizations,o=test,o=trunk,o=idm,o=jbid,dc=my-domain,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: Organizations
+
+dn: ou=OrganizationUnits,o=test,o=trunk,o=idm,o=jbid,dc=my-domain,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: OrganizationUnits
+
+dn: ou=Departments,o=test,o=trunk,o=idm,o=jbid,dc=my-domain,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: Departments
+
+dn: ou=Offices,o=test,o=trunk,o=idm,o=jbid,dc=my-domain,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: Offices
+

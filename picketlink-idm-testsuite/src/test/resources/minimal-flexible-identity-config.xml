@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-identity xmlns="urn:picketlink:idm:config:v1_0_0_ga"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="urn:picketlink:idm:config:v1_0_0_ga identity-config.xsd">
+   <realms>
+      <realm>
+         <id>realm://FlexibleRealm</id>
+         <repository-id-ref>Flexible Repo</repository-id-ref>
+         <identity-type-mappings>
+            <user-mapping>USER</user-mapping>
+         </identity-type-mappings>
+      </realm>
+   </realms>
+   <repositories>
+      <repository>
+         <id>Flexible Repo</id>
+         <class>org.picketlink.idm.impl.repository.WrapperIdentityStoreRepository</class>
+         <external-config/>
+         <default-identity-store-id>Hibernate Identity Store</default-identity-store-id>
+         <default-attribute-store-id>Hibernate Identity Store</default-attribute-store-id>
+         <options>
+            <option>
+               <name>allowNotDefinedAttributes</name>
+               <value>true</value>
+            </option>
+            <option>
+               <name>allowNotDefinedIdentityObjectTypes</name>
+               <value>true</value>
+            </option>
+         </options>
+      </repository>
+   </repositories>
+   <stores>
+      <attribute-stores/>
+      <identity-stores>
+         <identity-store>
+            <id>Hibernate Identity Store</id>
+            <class>org.picketlink.idm.impl.store.hibernate.HibernateIdentityStoreImpl</class>
+            <external-config/>
+            <supported-relationship-types>
+               <relationship-type>JBOSS_IDENTITY_MEMBERSHIP</relationship-type>
+               <relationship-type>JBOSS_IDENTITY_ROLE</relationship-type>
+            </supported-relationship-types>
+            <supported-identity-object-types/>
+            <options>
+               <option>
+                  <name>hibernateSessionFactoryJNDIName</name>
+                  <value>java:/jbossidentity/HibernateStoreSessionFactory</value>
+               </option>
+               <option>
+                  <name>populateRelationshipTypes</name>
+                  <value>true</value>
+               </option>
+               <option>
+                  <name>populateIdentityObjectTypes</name>
+                  <value>true</value>
+               </option>
+               <option>
+                  <name>isRealmAware</name>
+                  <value>true</value>
+               </option>
+               <option>
+                  <name>allowNotDefinedAttributes</name>
+                  <value>true</value>
+               </option>
+               <option>
+                  <name>allowNotDefinedIdentityObjectTypes</name>
+                  <value>true</value>
+               </option>
+            </options>
+         </identity-store>
+      </identity-stores>
+   </stores>
+</jboss-identity>

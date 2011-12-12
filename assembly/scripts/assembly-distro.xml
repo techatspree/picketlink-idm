@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<assembly xmlns="http://maven.apache.org/POM/4.0.0" 
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/assembly-1.1.0-SNAPSHOT.xsd">
+
+  <id>picketlink.idm.distribution</id>
+  <formats>
+    <format>zip</format>
+  </formats>
+  <includeBaseDirectory>true</includeBaseDirectory>
+  <baseDirectory>picketlink-idm-${version}</baseDirectory>
+
+  <!-- Dependency Sets -->
+  <dependencySets>
+    <dependencySet>
+      <unpack>false</unpack>
+      <scope>test</scope>
+      <outputDirectory>lib</outputDirectory>
+    </dependencySet>
+    
+      <!-- modules -->    
+     <dependencySet>
+      <outputDirectory>modules</outputDirectory>
+      <useStrictFiltering>true</useStrictFiltering>
+      <includes>
+        <include>org.picketlink.idm.integration:picketlink-idm-jboss5-deployer:zip:deployer</include>
+      </includes>
+      <unpack>true</unpack>
+    </dependencySet>
+     <dependencySet>
+      <outputDirectory>modules</outputDirectory>
+      <useStrictFiltering>true</useStrictFiltering>
+      <includes>
+        <include>org.picketlink.idm.integration:picketlink-idm-jboss5-deployer:zip:config</include>
+      </includes>
+      <unpack>true</unpack>
+    </dependencySet>  
+  </dependencySets>
+
+  <fileSets>
+    <fileSet>
+      <directory>src/main/files</directory>
+      <includes>
+        <include>jboss.eula.txt</include>
+        <include>license.txt</include>
+      </includes>
+      <outputDirectory>/</outputDirectory>
+    </fileSet>
+    
+    <fileSet>
+      <directory>src/main</directory>
+      <includes>
+        <include>build.properties</include>
+      </includes>
+      <outputDirectory>/</outputDirectory>
+    </fileSet>
+    
+    <fileSet>
+    	<directory>src/main/files/jboss</directory>
+    	<outputDirectory>jboss</outputDirectory>
+    </fileSet>
+    
+    <fileSet>
+    	<directory>src/main/files/db</directory>
+    	<outputDirectory>db</outputDirectory>
+    </fileSet>
+    
+     <fileSet>
+    	<directory>target/db</directory>
+    	<outputDirectory>db</outputDirectory>
+    </fileSet>   
+   
+   <!-- source --> 
+    <fileSet>
+      <directory>../picketlink-idm-common/src/main/java</directory>
+      <outputDirectory>src</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>../picketlink-idm-testsuite/src/main/java</directory>
+      <outputDirectory>src</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>../picketlink-idm-api/src/main/java</directory>
+      <outputDirectory>src</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>../picketlink-idm-spi/src/main/java</directory>
+      <outputDirectory>src</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>../picketlink-idm-core/src/main/java</directory>
+      <outputDirectory>src</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>../picketlink-idm-hibernate/src/main/java</directory>
+      <outputDirectory>src</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>../picketlink-idm-ldap/src/main/java</directory>
+      <outputDirectory>src</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>../picketlink-idm-cache/src/main/java</directory>
+      <outputDirectory>src</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>../picketlink-idm-auth/src/main/java</directory>
+      <outputDirectory>src</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>../integration/jboss5/src/main/java</directory>
+      <outputDirectory>src</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>../integration/jboss5/src/main/resources</directory>
+      <outputDirectory>src</outputDirectory>
+    </fileSet>
+  </fileSets>
+</assembly>

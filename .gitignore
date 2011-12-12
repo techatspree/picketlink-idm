@@ -1,1 +1,8 @@
-.DS_STORE
+# mvn ignores
+target
+
+# IDEA ignores
+*.iml
+
+# OS X ignores
+.DS_Store

@@ -1,4 +1,4 @@
-Extending picketlink 1.1.5.CR01 to work with GateIn 3.1.FINAL.
+Extending picketlink 1.1.5.CR01 (in combination with GateIn 3.1.FINAL) to support multiple ldap stores.
 
 © 2011 https://github.com/mo-gr & https://github.com/michaelschuetz
 

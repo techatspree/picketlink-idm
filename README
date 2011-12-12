@@ -1,0 +1,5 @@
+v1.0 (12.12.2011)
+* Modified PersistenceManagerImpl and FallbackIdentityStoreRepository.
+* Support multiple usertype mappings that each show to different ldap identity stores.
+* Modifications only work for reading ldap access.
+* Performance might not be optimal due to unneccessary ldap queries.

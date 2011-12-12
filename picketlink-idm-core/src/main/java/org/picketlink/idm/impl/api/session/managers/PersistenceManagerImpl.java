@@ -36,6 +36,7 @@ import org.picketlink.idm.spi.store.IdentityObjectSearchCriteriaType;
 import org.picketlink.idm.spi.store.IdentityStore;
 
 import java.io.Serializable;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

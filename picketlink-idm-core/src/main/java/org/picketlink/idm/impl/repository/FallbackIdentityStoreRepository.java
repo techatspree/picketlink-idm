@@ -34,8 +34,11 @@ import org.picketlink.idm.spi.configuration.metadata.IdentityObjectAttributeMeta
 import org.picketlink.idm.spi.configuration.metadata.IdentityRepositoryConfigurationMetaData;
 import org.picketlink.idm.spi.configuration.metadata.IdentityStoreMappingMetaData;
 import org.picketlink.idm.spi.exception.OperationNotSupportedException;
+import org.picketlink.idm.spi.model.*;
 import org.picketlink.idm.spi.search.IdentityObjectSearchCriteria;
+import org.picketlink.idm.spi.store.*;
 
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

@@ -3,6 +3,8 @@ target
 
 # IDEA ignores
 *.iml
+*.iws
+*.ipr
 
 # OS X ignores
 .DS_Store

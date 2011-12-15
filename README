@@ -2,9 +2,18 @@ Extending picketlink 1.1.5.CR01 (in combination with GateIn 3.1.FINAL) to suppor
 
 © 2011 https://github.com/mo-gr & https://github.com/michaelschuetz
 
+changed artefacts:
+* picketlink-idm-core
+* picketlink-idm-ldap
 
 changelog
 #########
+
+v1.1 (15.12.2011)
+* fixed issue #2 (Define amount of ldap search results for mulitple stores)
+* set option "maxSearchResults" per xml config file
+* fixed issue #5 (get "USER" from userTypeMappings)
+
 
 v1.0 (12.12.2011)
 * Modified PersistenceManagerImpl and FallbackIdentityStoreRepository.

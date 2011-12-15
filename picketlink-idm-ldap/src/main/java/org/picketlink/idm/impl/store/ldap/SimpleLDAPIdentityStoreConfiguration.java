@@ -102,6 +102,10 @@ public class SimpleLDAPIdentityStoreConfiguration
 
    public static final int SEARCH_TIME_LIMIT_DEFAULT = 10000;
 
+   public static final String MAX_SEARCH_RESULTS = "maxSearchResults";
+
+   public static final int MAX_SEARCH_RESULTS_DEFAULT = 250;
+
    public static final String CUSTOM_JNDI_CONNECTION_PARAMETERS = "customJNDIConnectionParameters";
 
    public static final String CUSTOM_SYSTEM_PROPERTIES = "customSystemProperties";

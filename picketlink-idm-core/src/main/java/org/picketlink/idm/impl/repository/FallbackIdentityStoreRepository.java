@@ -1477,8 +1477,8 @@ public class FallbackIdentityStoreRepository extends AbstractIdentityStoreReposi
             }
             else
             {
-                // TODO get "USER" from userTypeMappings
-                if (toStore != defaultAttributeStore && "USER".equals(identity.getIdentityType().getName()))
+                // check that the identity we are looking is configured in the attributeStoreMappings
+                if (toStore != defaultAttributeStore && attributeStoreMappings.keySet().contains(identity.getIdentityType().getName()))
                 {
 
                     // check attributes for all ldap stores

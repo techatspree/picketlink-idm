@@ -429,7 +429,12 @@ public class PersistenceManagerImpl extends AbstractManager implements Persisten
             // find user in multiple stores
             final Map<String, IdentityStore> identityStoreMappings = getRepository().getIdentityStoreMappings();
             IdentityObject io = null;
-            for (String storeId : identityStoreMappings.keySet())
+            Set<String> storeIds = new HashSet<String>(identityStoreMappings.keySet());
+            if (storeIds.isEmpty())
+            {
+                storeIds.add(getUserObjectType().getName());
+            }
+            for (String storeId : storeIds)
             {
                 IdentityObject foundIo = getRepository().findIdentityObject(getInvocationContext(), name, new SimpleIdentityObjectType(storeId));
                 if (foundIo != null)

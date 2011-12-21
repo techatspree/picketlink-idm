@@ -430,6 +430,7 @@ public class PersistenceManagerImpl extends AbstractManager implements Persisten
             final Map<String, IdentityStore> identityStoreMappings = getRepository().getIdentityStoreMappings();
             IdentityObject io = null;
             Set<String> storeIds = new HashSet<String>(identityStoreMappings.keySet());
+            // initially called during startup
             if (storeIds.isEmpty())
             {
                 storeIds.add(getUserObjectType().getName());

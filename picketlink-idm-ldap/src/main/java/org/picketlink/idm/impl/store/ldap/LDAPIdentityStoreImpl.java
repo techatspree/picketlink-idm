@@ -96,6 +96,8 @@ public class LDAPIdentityStoreImpl implements IdentityStore
 
    private FeaturesMetaData supportedFeatures;
 
+   private int maxResults = 0;
+
    LDAPIdentityStoreConfiguration configuration;
 
    IdentityStoreConfigurationMetaData configurationMD;
@@ -3251,11 +3253,17 @@ public class LDAPIdentityStoreImpl implements IdentityStore
                controlList.addAll(Arrays.asList(requestControls));
            }
 
-           int maxResults = MAX_SEARCH_RESULTS_DEFAULT; // default value
-           try {
-            maxResults = Integer.valueOf(getConfiguration(ctx).getConfigurationMetaData().getOptions().get(MAX_SEARCH_RESULTS).get(0));
-           } catch (Exception e) {
-               log.finer("Could not load configuration value for maxResults from options of identity store context: " + ctx);
+           if (maxResults <= 0) // lazily load maxResults from configuration
+           {
+               maxResults = MAX_SEARCH_RESULTS_DEFAULT; // default value
+               try
+               {
+                   maxResults = Integer.valueOf(getConfiguration(ctx).getConfigurationMetaData().getOptions().get(MAX_SEARCH_RESULTS).get(0));
+               }
+               catch (Exception e)
+               {
+                   log.finer("Could not load configuration value for maxResults from options of identity store context: " + ctx);
+               }
            }
 
            controlList.add(new PagedResultsControl(maxResults, Control.CRITICAL));

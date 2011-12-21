@@ -9,6 +9,10 @@ changed artefacts:
 changelog
 #########
 
+v1.2 (21.12.2011)
+* fixed issue #9 (Exception on startup) 
+* fixed issue #11 (performance troubles with #2) 
+
 v1.1 (15.12.2011)
 * fixed issue #2 (Define amount of ldap search results for mulitple stores)
 * set option "maxSearchResults" per xml config file

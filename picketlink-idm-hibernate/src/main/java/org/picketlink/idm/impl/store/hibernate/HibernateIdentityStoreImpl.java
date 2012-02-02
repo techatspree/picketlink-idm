@@ -514,7 +514,7 @@ public class HibernateIdentityStoreImpl implements IdentityStore, Serializable
       Number boxedSize = (Integer)session.createCriteria(HibernateIdentityObject.class)
          .createAlias("identityType", "type")
          .createAlias("realm", "rm")
-         .add(Restrictions.eq("name", name))
+         .add(Restrictions.eq("name", name).ignoreCase())
          .add(Restrictions.eq("rm.name", realm.getName()))
          .add(Restrictions.eq("type.name", identityObjectType.getName()))
          .setProjection(Projections.rowCount())
@@ -653,7 +653,7 @@ public class HibernateIdentityStoreImpl implements IdentityStore, Serializable
       {
          hibernateObject = (HibernateIdentityObject)getHibernateSession(ctx).
             createCriteria(HibernateIdentityObject.class)
-            .add(Restrictions.eq("name", name))
+            .add(Restrictions.eq("name", name).ignoreCase())
             .createAlias("realm", "rm")
             .add(Restrictions.eq("rm.name", getRealmName(ctx)))
             .createAlias("identityType", "type")
@@ -2577,7 +2577,7 @@ public class HibernateIdentityStoreImpl implements IdentityStore, Serializable
       {
 
          hibernateObject = (HibernateIdentityObject)hibernateSession.createCriteria(HibernateIdentityObject.class)
-            .add(Restrictions.eq("name", io.getName()))
+            .add(Restrictions.eq("name", io.getName()).ignoreCase())
             .createAlias("identityType", "type")
             .add(Restrictions.eq("type.name", io.getIdentityType().getName()))
             .createAlias("realm", "rm")

@@ -749,7 +749,7 @@ public class HibernateIdentityStoreImpl implements IdentityStore, Serializable
 
          if (criteria != null && criteria.getFilter() != null)
          {
-            hc.add(Restrictions.like("name", criteria.getFilter().replaceAll("\\*", "%")));
+            hc.add(Restrictions.ilike("name", criteria.getFilter().replaceAll("\\*", "%")));
          }
          else
          {
@@ -2898,13 +2898,13 @@ public class HibernateIdentityStoreImpl implements IdentityStore, Serializable
 
                for (String s : given)
                {
-                  String regex = Tools.wildcardToRegex(s);
+                  String regex = Tools.wildcardToRegex(s.toLowerCase());
 
                   boolean matches = false;
 
                   for (Object o : present)
                   {
-                     if (o.toString().matches(regex))
+                     if (o.toString().toLowerCase().matches(regex))
                      {
                         matches = true;
                      }

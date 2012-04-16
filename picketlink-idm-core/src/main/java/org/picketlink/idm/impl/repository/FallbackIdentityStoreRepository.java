@@ -1295,17 +1295,23 @@ public class FallbackIdentityStoreRepository extends AbstractIdentityStoreReposi
     {
         try
         {
-            IdentityStore toStore = resolveIdentityStore(identityObject);
-            IdentityStoreInvocationContext targetCtx = resolveInvocationContext(toStore, ctx);
 
-            if (hasIdentityObject(targetCtx, toStore, identityObject))
+            // check attributes for all ldap stores
+            for (String storeName : attributeStoreMappings.keySet())
             {
-                return toStore.validateCredential(targetCtx, identityObject, credential);
+
+                IdentityStore userIdentityStore = resolveIdentityStore(new SimpleIdentityObjectType(storeName));
+                IdentityStoreInvocationContext otherLdapCtx = resolveInvocationContext(userIdentityStore, ctx);
+                SimpleIdentityObject userIdentityForStore = new SimpleIdentityObject(identityObject.getName(), identityObject.getId(), new SimpleIdentityObjectType(storeName));
+                if (hasIdentityObject(otherLdapCtx, userIdentityStore, userIdentityForStore))
+                {
+                    boolean credentialsValid = userIdentityStore.validateCredential(otherLdapCtx, userIdentityForStore, credential);
+                    if (credentialsValid) return true;
+                }
             }
+            IdentityStoreInvocationContext targetCtx = resolveInvocationContext(defaultIdentityStore, ctx);
 
-            targetCtx = resolveInvocationContext(defaultIdentityStore, ctx);
-
-            if (toStore != defaultIdentityStore && hasIdentityObject(targetCtx, defaultIdentityStore, identityObject))
+            if (hasIdentityObject(targetCtx, defaultIdentityStore, identityObject))
             {
                 return defaultIdentityStore.validateCredential(targetCtx, identityObject, credential);
             }

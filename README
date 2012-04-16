@@ -1,13 +1,19 @@
 Extending picketlink 1.1.5.CR01 (in combination with GateIn 3.1.FINAL) to support multiple ldap stores.
 
-© 2011 https://github.com/mo-gr & https://github.com/michaelschuetz
+© 2011,2012 https://github.com/mo-gr & https://github.com/michaelschuetz
 
 changed artefacts:
 * picketlink-idm-core
 * picketlink-idm-ldap
+* picketlink-idm-hibernate
 
 changelog
 #########
+
+v1.3 (16.04.2012)
+* fixed issue #14 (validateUser does not respect multiple LDAPs)
+* fixed issue #15 (ldap search needs to ignore case) 
+
 
 v1.2 (21.12.2011)
 * fixed issue #9 (Exception on startup) 

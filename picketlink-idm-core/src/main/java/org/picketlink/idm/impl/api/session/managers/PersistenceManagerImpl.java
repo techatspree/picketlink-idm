@@ -485,10 +485,23 @@ public class PersistenceManagerImpl extends AbstractManager implements Persisten
             final Map<String, IdentityStore> identityStoreMappings = getRepository().getIdentityStoreMappings();
             List<IdentityObject> identityObjects = new LinkedList<IdentityObject>();
 
+            Set<String> identityNames = new HashSet<String>();
+            
             for (String storeId : identityStoreMappings.keySet())
             {
                 final Collection<IdentityObject> ios = getRepository().findIdentityObject(getInvocationContext(), new SimpleIdentityObjectType(storeId), convertSearchControls(criteria));
-                identityObjects.addAll(ios);
+                for(IdentityObject tmpIos : ios){
+                	
+                	String identityName = tmpIos.getName();
+                	
+                	if(!identityNames.contains(identityName)){
+                		log.log(Level.INFO, "ADD: " + tmpIos.getName() + ", " + tmpIos.getIdentityType().getName());
+                		identityObjects.add(tmpIos);
+                		identityNames.add(identityName);
+                	} else {
+                		log.log(Level.INFO, "SKIP: " + tmpIos.getName() + ", " + tmpIos.getIdentityType().getName());
+                	}
+                }
             }
 
             final List<User> identities = new LinkedList<User>();
